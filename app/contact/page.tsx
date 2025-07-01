@@ -2,7 +2,6 @@
 
 import type React from "react"
 
-import Navbar from "@/components/navbar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -67,7 +66,6 @@ export default function Contact() {
 
   return (
     <main className="flex min-h-screen flex-col">
-      <Navbar />
 
       <div className="flex-1 container mx-auto px-4 py-12">
         <h1 className="text-3xl md:text-5xl font-bold mb-12 text-center">

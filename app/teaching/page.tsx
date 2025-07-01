@@ -2,7 +2,6 @@
 
 import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
-import Navbar from "@/components/navbar"
 import BookNowButton from "@/components/book-now-button"
 import { Mic, Guitar, Piano, Laptop, Check, Music, Calendar, ShoppingCart, ChevronDown, ChevronUp } from "lucide-react"
 import ScrollingTestimonials from "@/components/scrolling-testimonials"
@@ -298,7 +297,6 @@ export default function Teaching() {
 
   return (
     <main className="min-h-screen dark:bg-black bg-white">
-      <Navbar />
 
       {/* Hero Section with Slideshow */}
       <section className="relative h-[60vh] md:h-[70vh]">

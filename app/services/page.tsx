@@ -2,7 +2,6 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import Navbar from "@/components/navbar"
 import BookNowButton from "@/components/book-now-button"
 import { Music, Mic, Video, Headphones, Sliders, Laptop } from "lucide-react"
 
@@ -54,7 +53,6 @@ export default function Services() {
 
   return (
     <main className="min-h-screen bg-black">
-      <Navbar />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">

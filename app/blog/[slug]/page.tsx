@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Calendar, User, Share2, Clock, Tag } from "lucide-react"
-import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import blogData from "@/lib/blog-data.json"
 
@@ -46,7 +45,6 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   return (
     <main className="min-h-screen dark:bg-black bg-white">
-      <Navbar />
       
       {/* Enhanced Header Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">

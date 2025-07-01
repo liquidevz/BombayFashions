@@ -5,7 +5,6 @@ import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Music, Mic, Video, BookOpen } from "lucide-react"
-import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import BookNowButton from "@/components/book-now-button"
 import ScrollingTestimonials from "@/components/scrolling-testimonials"
@@ -27,7 +26,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen dark:bg-black bg-white">
-      <Navbar />
 
       {/* Hero Section with Slideshow */}
       <section className="relative h-screen">

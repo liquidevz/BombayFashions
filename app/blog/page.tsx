@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Calendar, User, Search, Filter } from "lucide-react"
-import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import blogData from "@/lib/blog-data.json"
 
@@ -13,7 +12,6 @@ export default function BlogPage() {
 
   return (
     <main className="min-h-screen dark:bg-black bg-white">
-      <Navbar />
       
       {/* Enhanced Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">

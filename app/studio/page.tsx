@@ -2,7 +2,6 @@
 
 import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
-import Navbar from "@/components/navbar"
 import BookNowButton from "@/components/book-now-button"
 import { X } from "lucide-react"
 
@@ -54,7 +53,6 @@ export default function Studio() {
 
   return (
     <main className="min-h-screen bg-black">
-      <Navbar />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">

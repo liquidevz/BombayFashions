@@ -3,7 +3,6 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import Image from "next/image"
-import Navbar from "@/components/navbar"
 import BookNowButton from "@/components/book-now-button"
 
 const equipmentCategories = [
@@ -93,7 +92,6 @@ export default function Equipment() {
 
   return (
     <main className="min-h-screen bg-black">
-      <Navbar />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">

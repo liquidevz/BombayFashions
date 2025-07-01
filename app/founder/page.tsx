@@ -5,7 +5,6 @@ import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Award, Globe, Music, Star } from "lucide-react"
-import Navbar from "@/components/navbar"
 import BookNowButton from "@/components/book-now-button"
 
 export default function Founder() {
@@ -89,7 +88,6 @@ export default function Founder() {
 
   return (
     <main className="min-h-screen bg-black">
-      <Navbar />
 
       <div ref={containerRef} className="relative bg-black text-white overflow-hidden pt-20">
         {/* Vertical Navigation */}
