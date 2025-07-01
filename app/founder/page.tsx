@@ -68,19 +68,19 @@ export default function Founder() {
   ]
 
   useEffect(() => {
+    const sections = document.querySelectorAll('.section')
+    
     const handleScroll = () => {
-      const sections = document.querySelectorAll("section[id]")
-      let currentSection = "hero"
-
+      const scrollY = window.scrollY
+      
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop
-        const sectionHeight = section.offsetHeight
-        if (window.scrollY >= sectionTop - 200 && window.scrollY < sectionTop + sectionHeight - 200) {
-          currentSection = section.id
+        const htmlSection = section as HTMLElement
+        const sectionTop = htmlSection.offsetTop
+        const sectionHeight = htmlSection.offsetHeight
+        if (scrollY >= sectionTop - 200 && scrollY < sectionTop + sectionHeight - 200) {
+          setActiveSection(section.id)
         }
       })
-
-      setActiveSection(currentSection)
     }
 
     window.addEventListener("scroll", handleScroll)

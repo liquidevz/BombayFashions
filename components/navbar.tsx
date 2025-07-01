@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Volume2, VolumeX, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
 import { trackEvent } from "./analytics"
+import { cn } from "@/lib/utils"
 
 const navItems = [
   { name: "HOME", href: "/" },
@@ -103,16 +104,15 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-medium relative ${
+                className={cn(
+                  "relative py-2 px-3 text-sm font-medium transition-colors duration-200",
                   activeItem === item.name
                     ? "text-gradient"
-                    : "dark:text-gray-300 text-gray-700 hover:dark:text-white hover:text-black"
-                }`}
+                    : "text-gray-700 dark:text-gray-300 hover:text-gradient"
+                )}
                 onClick={() => {
                   trackEvent("navigation", "click", `Nav Link: ${item.name}`, 1)
                 }}
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 300 }}
               >
                 {item.name}
                 {activeItem === item.name && (
@@ -196,9 +196,10 @@ export default function Navbar() {
                   >
                     <Link
                       href={item.href}
-                      className={`text-2xl font-bold ${
+                      className={cn(
+                        "text-2xl font-bold",
                         activeItem === item.name ? "text-gradient" : "dark:text-gray-300 text-gray-700"
-                      }`}
+                      )}
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}

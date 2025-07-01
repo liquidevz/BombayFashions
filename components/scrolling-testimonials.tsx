@@ -69,31 +69,48 @@ const ScrollingTestimonials = () => {
   )
 }
 
-const TestimonialList = ({ list, reverse = false, duration = 50 }) => {
+interface Testimonial {
+  id: number
+  img: string
+  name: string
+  title: string
+  info: string
+}
+
+interface TestimonialListProps {
+  list: Testimonial[]
+  reverse?: boolean
+  duration?: number
+}
+
+const TestimonialList = ({ list, reverse = false, duration = 50 }: TestimonialListProps) => {
   return (
-    <motion.div
-      initial={{ translateX: reverse ? "-100%" : "0%" }}
-      animate={{ translateX: reverse ? "0%" : "-100%" }}
-      transition={{ duration, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-      className="flex gap-4 px-2"
-    >
-      {list.map((t) => {
-        return (
-          <div
-            key={t.id}
-            className="shrink-0 w-[500px] grid grid-cols-[7rem,_1fr] rounded-lg overflow-hidden relative dark:bg-[#121212] bg-white border dark:border-gray-800 border-gray-200 shadow-lg"
-          >
-            <img src={t.img || "/placeholder.svg"} alt={t.name} className="w-full h-44 object-cover" />
-            <div className="dark:bg-[#121212] bg-white p-4 relative">
-              <span className="block font-semibold text-lg mb-1 text-gradient">{t.name}</span>
-              <span className="block mb-3 text-sm font-medium dark:text-gray-400 text-gray-600">{t.title}</span>
-              <span className="block text-sm dark:text-gray-300 text-gray-700">{t.info}</span>
-            </div>
-            <span className="text-7xl absolute top-2 right-2 text-purple-500 opacity-10">"</span>
-          </div>
-        )
-      })}
-    </motion.div>
+    <div className="flex">
+      {Array.from({ length: 2 }).map((_, arrayIndex) => (
+        <div
+          key={arrayIndex}
+          className={`flex ${reverse ? "animate-scroll-reverse" : "animate-scroll"}`}
+          style={{ animationDuration: `${duration}s` }}
+        >
+          {list.map((t: Testimonial) => {
+            return (
+              <div
+                key={t.id}
+                className="shrink-0 w-[500px] grid grid-cols-[7rem,_1fr] rounded-lg overflow-hidden relative dark:bg-[#121212] bg-white border dark:border-gray-800 border-gray-200 shadow-lg"
+              >
+                <img src={t.img || "/placeholder.svg"} alt={t.name} className="w-full h-44 object-cover" />
+                <div className="dark:bg-[#121212] bg-white p-4 relative">
+                  <span className="block font-semibold text-lg mb-1 text-gradient">{t.name}</span>
+                  <span className="block mb-3 text-sm font-medium dark:text-gray-400 text-gray-600">{t.title}</span>
+                  <span className="block text-sm dark:text-gray-300 text-gray-700">{t.info}</span>
+                </div>
+                <span className="text-7xl absolute top-2 right-2 text-purple-500 opacity-10">"</span>
+              </div>
+            )
+          })}
+        </div>
+      ))}
+    </div>
   )
 }
 

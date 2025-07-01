@@ -9,6 +9,13 @@ export default function SoundEffects() {
   const clickSoundRef = useRef<HTMLAudioElement | null>(null)
   const navSoundRef = useRef<HTMLAudioElement | null>(null)
 
+  const loadAudio = (ref: React.RefObject<HTMLAudioElement>, src: string) => {
+    if (ref.current) {
+      ref.current.src = src
+      ref.current.volume = 0.1
+    }
+  }
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Create audio elements
@@ -16,32 +23,16 @@ export default function SoundEffects() {
       clickSoundRef.current = new Audio()
       navSoundRef.current = new Audio()
 
-      // Function to safely load audio
-      const loadAudio = async (audioRef: React.RefObject<HTMLAudioElement>, path: string) => {
-        if (audioRef.current) {
-          try {
-            // Check if file exists before setting src
-            const response = await fetch(path, { method: "HEAD" })
-            if (response.ok) {
-              audioRef.current.src = path
-              audioRef.current.preload = "auto"
-              // Set volume only after src is set
-              if (path.includes("hover")) audioRef.current.volume = 0.2
-              if (path.includes("click")) audioRef.current.volume = 0.3
-              if (path.includes("nav")) audioRef.current.volume = 0.4
-            } else {
-              console.warn(`Audio file not found: ${path}`)
-            }
-          } catch (err) {
-            console.warn(`Error loading audio file ${path}:`, err)
-          }
-        }
-      }
-
       // Load audio files
-      loadAudio(hoverSoundRef, "/sounds/hover.mp3")
-      loadAudio(clickSoundRef, "/sounds/click.mp3")
-      loadAudio(navSoundRef, "/sounds/nav.mp3")
+      if (hoverSoundRef.current) {
+        loadAudio(hoverSoundRef, "/sounds/hover.mp3")
+      }
+      if (clickSoundRef.current) {
+        loadAudio(clickSoundRef, "/sounds/click.mp3")
+      }
+      if (navSoundRef.current) {
+        loadAudio(navSoundRef, "/sounds/nav.mp3")
+      }
 
       // Add event listeners
       const buttons = document.querySelectorAll("button, a, [role=button]")

@@ -10,20 +10,21 @@ import Footer from "@/components/footer"
 import blogData from "@/lib/blog-data.json"
 
 interface BlogPostProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function BlogPost({ params }: BlogPostProps) {
-  const blog = blogData.blogs.find(b => b.slug === params.slug)
+export default async function BlogPost({ params }: BlogPostProps) {
+  const { slug } = await params
+  const blog = blogData.blogs.find(b => b.slug === slug)
 
   if (!blog) {
     notFound()
   }
 
   // Get related blogs (excluding current one)
-  const relatedBlogs = blogData.blogs.filter(b => b.slug !== params.slug).slice(0, 3)
+  const relatedBlogs = blogData.blogs.filter(b => b.slug !== slug).slice(0, 3)
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
   
