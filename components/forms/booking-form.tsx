@@ -116,7 +116,7 @@ export default function BookingForm({ onClose }: BookingFormProps) {
     { value: "production", label: "Music Production" },
     { value: "jamming", label: "Jamming Session" },
     { value: "video", label: "Video Shooting" },
-    { value: "teaching", label: "Music Teaching" },
+            { value: "consultation", label: "Design Consultation" },
   ]
 
   const timeOptions = [

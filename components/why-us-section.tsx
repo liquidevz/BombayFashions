@@ -10,28 +10,28 @@ const features = [
     title: "Personalized Designs",
     description: "We tailor all recordings to bring fresh and comfortable experience to every artist.",
     icon: "/placeholder.svg",
-    color: "bg-blue-500"
+    color: "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800"
   },
   {
     id: 2,
-    title: "Durable Equipment",
-    description: "Our professional equipment are not only reliable but highly durable to last for extended sessions.",
+    title: "Durable Garments",
+    description: "Our professional uniforms are not only reliable but highly durable to last for extended use.",
     icon: "/placeholder.svg",
-    color: "bg-purple-500"
+    color: "bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800"
   },
   {
     id: 3,
     title: "Competitive Pricing",
     description: "We offer fair rates and ensure you get premium quality output from our end.",
     icon: "/placeholder.svg",
-    color: "bg-yellow-500"
+    color: "bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800"
   },
   {
     id: 4,
     title: "Prompt Delivery",
     description: "We always deliver your projects on schedule with possible delivery from our end.",
     icon: "/placeholder.svg",
-    color: "bg-red-500"
+    color: "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800"
   }
 ]
 
@@ -51,7 +51,7 @@ const detailedFeatures = [
   {
     id: 3,
     title: "DURABLE GARMENTS",
-    description: "Our equipment are not only comfortable to register but also durable in nature. Studios are sourced directly from the best malls in India. Having the finest materials to sew each piece, quality output is guaranteed.",
+    description: "Our garments are not only comfortable to wear but also durable in nature. Fabrics are sourced directly from the best mills in India. Having the finest materials to craft each piece, quality output is guaranteed.",
     icon: "/placeholder.svg"
   },
   {
@@ -84,7 +84,7 @@ export default function WhyUsSection() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`${feature.color} bg-opacity-10 p-6 rounded-lg border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300`}
+              className={`${feature.color} p-6 rounded-lg hover:shadow-xl transition-all duration-300`}
             >
               <div className="h-12 w-12 mb-4 flex items-center justify-center rounded-md bg-gradient">
                 <Image

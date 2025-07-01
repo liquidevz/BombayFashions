@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
 
 interface HeroSlideshowProps {
   images: string[]
@@ -25,31 +24,38 @@ export default function HeroSlideshow({ images, interval = 5000, children, overl
   }, [images.length, interval])
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-gray-900">
       <AnimatePresence initial={false}>
         <motion.div
           key={currentIndex}
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full z-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-        >
-          <Image
-            src={images[currentIndex] || "/placeholder.svg"}
-            alt="Studio background"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-        </motion.div>
+          style={{
+            backgroundImage: `url(${images[currentIndex] || "/placeholder.svg"})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: '#1f2937'
+          }}
+        />
       </AnimatePresence>
 
-      {overlay && <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>}
+      {overlay && (
+        <div 
+          className="absolute inset-0 z-10" 
+          style={{
+            background: 'rgba(0, 0, 0, 0.6)',
+            backdropFilter: 'brightness(0.8)'
+          }}
+        />
+      )}
 
-      <div className="relative z-20 h-full">{children}</div>
+      <div className="relative z-20 w-full h-full">{children}</div>
 
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
         {images.map((_, index) => (
           <button
             key={index}

@@ -1,0 +1,162 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "slug": "white-pc-shirts",
+      "title": "White PC Shirts",
+      "category": "Corporate Wear",
+      "price": "₹899",
+      "originalPrice": "₹1,299",
+      "excerpt": "Premium white polycotton shirts perfect for corporate and formal wear. Made with high-quality fabric for durability and comfort.",
+      "description": "Our White PC Shirts are crafted from premium polycotton fabric that combines the breathability of cotton with the durability of polyester. These shirts are perfect for corporate environments, formal occasions, and professional settings. Each shirt is designed with precision tailoring and quality construction to ensure a professional appearance that lasts.\n\nKey Features:\n- Premium polycotton blend fabric\n- Professional fit and finish\n- Easy-care, wrinkle-resistant\n- Available in multiple sizes\n- Customizable with company logos\n- Reinforced collar and cuffs\n- Machine washable\n\nIdeal for corporate offices, banks, hospitality industry, and any professional setting where a crisp, clean appearance is essential.",
+      "features": [
+        "Premium polycotton fabric",
+        "Wrinkle-resistant finish",
+        "Professional tailoring",
+        "Logo customization available",
+        "Multiple size options",
+        "Easy care instructions"
+      ],
+      "imageUrl": "/images/hero-2.png",
+      "gallery": ["/images/hero-2.png", "/images/founder.png", "/images/studio1.png"],
+      "inStock": true,
+      "featured": true
+    },
+    {
+      "id": 2,
+      "slug": "pv-trousers",
+      "title": "PV Trousers",
+      "category": "Corporate Wear",
+      "price": "₹1,299",
+      "originalPrice": "₹1,899",
+      "excerpt": "High-quality polyester-viscose trousers offering excellent fit and durability for professional and school uniforms.",
+      "description": "Our PV Trousers are made from a premium polyester-viscose blend that provides the perfect balance of comfort, durability, and professional appearance. These trousers are designed to maintain their shape and color even after repeated washing and wearing.\n\nKey Features:\n- Polyester-viscose blend fabric\n- Superior shape retention\n- Fade-resistant colors\n- Comfortable waistband\n- Professional hemming\n- Available in various colors\n- Custom fitting options\n\nPerfect for school uniforms, corporate wear, and professional environments. Our trouser manufacturing process ensures consistent quality and fit across all sizes.",
+      "features": [
+        "Polyester-viscose blend",
+        "Shape retention technology",
+        "Fade-resistant fabric",
+        "Professional fit",
+        "Multiple color options",
+        "Custom alterations"
+      ],
+      "imageUrl": "/images/studio2.png",
+      "gallery": ["/images/studio2.png", "/images/studio3.png", "/images/hero-3.png"],
+      "inStock": true,
+      "featured": true
+    },
+    {
+      "id": 3,
+      "slug": "scrub-suits",
+      "title": "Medical Scrub Suits",
+      "category": "Healthcare",
+      "price": "₹1,599",
+      "originalPrice": "₹2,199",
+      "excerpt": "Professional medical scrub suits designed for healthcare professionals, offering comfort, durability, and easy maintenance.",
+      "description": "Our medical scrub suits are specifically designed for healthcare professionals who need comfortable, durable, and easy-to-maintain uniforms. Made from high-quality fabric that withstands frequent washing and sterilization processes.\n\nKey Features:\n- Medical-grade fabric\n- Antimicrobial properties\n- Easy-care and quick-dry\n- Multiple pocket design\n- Professional colors\n- Comfortable fit\n- Shrink-resistant\n\nAvailable in various colors including medical blue, green, white, and navy. Each suit includes top and bottom pieces designed for optimal comfort during long shifts.",
+      "features": [
+        "Medical-grade fabric",
+        "Antimicrobial treatment",
+        "Quick-dry technology",
+        "Multiple functional pockets",
+        "Professional color options",
+        "Shrink-resistant"
+      ],
+      "imageUrl": "/images/studio4.png",
+      "gallery": ["/images/studio4.png", "/images/studio5.png", "/images/recording.png"],
+      "inStock": true,
+      "featured": true
+    },
+    {
+      "id": 4,
+      "slug": "chef-coats",
+      "title": "Professional Chef Coats",
+      "category": "Hospitality",
+      "price": "₹1,799",
+      "originalPrice": "₹2,499",
+      "excerpt": "Premium chef coats designed for professional kitchens, featuring stain resistance and comfort for long working hours.",
+      "description": "Our professional chef coats are crafted for the demanding environment of commercial kitchens. These coats combine functionality with professional appearance, featuring stain-resistant fabric and ergonomic design.\n\nKey Features:\n- Stain-resistant fabric\n- Heat-resistant properties\n- Double-breasted design\n- Reinforced stress points\n- Easy-care instructions\n- Professional appearance\n- Comfortable fit\n\nDesigned specifically for chefs, kitchen staff, and culinary professionals who need uniforms that can withstand the rigors of professional food service.",
+      "features": [
+        "Stain-resistant coating",
+        "Heat-resistant fabric",
+        "Double-breasted design",
+        "Reinforced construction",
+        "Professional styling",
+        "Easy maintenance"
+      ],
+      "imageUrl": "/images/studio6.png",
+      "gallery": ["/images/studio6.png", "/images/studio7.png", "/images/teaching.png"],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 5,
+      "slug": "school-uniforms",
+      "title": "Complete School Uniforms",
+      "category": "Education",
+      "price": "₹2,499",
+      "originalPrice": "₹3,499",
+      "excerpt": "Complete school uniform sets including shirts, trousers, and accessories. Designed for comfort and durability for growing students.",
+      "description": "Our complete school uniform sets are designed with growing students in mind. Each set includes everything needed for a professional school appearance while ensuring comfort throughout the school day.\n\nKey Features:\n- Complete uniform sets\n- Growth-friendly sizing\n- Durable construction\n- Easy-care fabrics\n- School-approved designs\n- Color-fast materials\n- Comfortable fits\n\nIncludes shirts, trousers, ties, and other accessories as required by individual schools. We work directly with schools to ensure compliance with uniform policies.",
+      "features": [
+        "Complete uniform sets",
+        "Growth-accommodating fits",
+        "School-approved designs",
+        "Durable materials",
+        "Easy-care instructions",
+        "Color-fast guarantee"
+      ],
+      "imageUrl": "/images/studio8.png",
+      "gallery": ["/images/studio8.png", "/images/hero-2.png", "/images/equipment.png"],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 6,
+      "slug": "hospitality-uniforms",
+      "title": "Hospitality Staff Uniforms",
+      "category": "Hospitality",
+      "price": "₹1,999",
+      "originalPrice": "₹2,799",
+      "excerpt": "Professional uniforms for hotels, restaurants, and hospitality industry. Combines elegance with functionality for service excellence.",
+      "description": "Our hospitality staff uniforms are designed to project professionalism and elegance while providing the functionality needed for service industry work. Each piece is crafted to withstand the demands of hospitality environments.\n\nKey Features:\n- Professional appearance\n- Stain-resistant fabrics\n- Comfortable movement\n- Easy maintenance\n- Custom branding options\n- Multiple style options\n- Durable construction\n\nPerfect for hotels, restaurants, cafes, and other hospitality businesses looking to maintain a professional and consistent staff appearance.",
+      "features": [
+        "Professional styling",
+        "Stain-resistant treatment",
+        "Flexible movement",
+        "Brand customization",
+        "Multiple style options",
+        "Commercial durability"
+      ],
+      "imageUrl": "/images/video.png",
+      "gallery": ["/images/video.png", "/images/founder.png", "/images/studio1.png"],
+      "inStock": true,
+      "featured": false
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Corporate Wear",
+      "slug": "corporate-wear",
+      "description": "Professional corporate uniforms and formal wear"
+    },
+    {
+      "id": 2,
+      "name": "Healthcare",
+      "slug": "healthcare",
+      "description": "Medical scrubs and healthcare professional uniforms"
+    },
+    {
+      "id": 3,
+      "name": "Hospitality",
+      "slug": "hospitality",
+      "description": "Restaurant, hotel, and hospitality staff uniforms"
+    },
+    {
+      "id": 4,
+      "name": "Education",
+      "slug": "education",
+      "description": "School uniforms and educational institution wear"
+    }
+  ]
+} 

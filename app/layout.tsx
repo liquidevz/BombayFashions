@@ -11,7 +11,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "BombayFashions  | Thane's Premier Music & Recording Studio",
-  description: "Redefining sound with professional recording services, music production, and teaching.",
+  description: "Redefining workwear with professional uniform manufacturing, design services, and quality craftsmanship.",
     generator: 'v0.dev'
 }
 

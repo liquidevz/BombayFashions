@@ -170,7 +170,7 @@ export default function BookingForm({ onClose }: BookingFormProps) {
           <option value="production">Music Production</option>
           <option value="jamming">Jamming Session</option>
           <option value="video">Video Shooting</option>
-          <option value="teaching">Music Teaching</option>
+                          <option value="consultation">Design Consultation</option>
         </motion.select>
       </motion.div>
 

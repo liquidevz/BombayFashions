@@ -36,8 +36,8 @@ export default function Footer() {
               </motion.div>
             </Link>
             <p className="dark:text-gray-400 text-gray-600 mb-6">
-              Thane's premier music and recording studio, offering professional recording services, music production,
-              and teaching to help artists bring their musical vision to life.
+              Premier workwear and uniform manufacturing company, offering professional design services, quality production,
+              and customization to help businesses achieve their professional image goals.
             </p>
             <div className="flex space-x-4">
               <SocialIcon icon={<Facebook size={18} />} />
@@ -56,10 +56,10 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "Home", href: "/" },
-                { name: "Equipment", href: "/equipment" },
-                { name: "Services", href: "/services" },
-                { name: "Studio", href: "/studio" },
-                { name: "Teaching", href: "/teaching" },
+                        { name: "Products", href: "/products" },
+        { name: "Services", href: "/services" },
+        { name: "Studio", href: "/studio" },
+        { name: "Contact", href: "/contact" },
                 { name: "Founder", href: "/founder" },
               ].map((link) => (
                 <li key={link.name}>

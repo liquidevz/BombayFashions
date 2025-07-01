@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Music, Mic, Video, BookOpen } from "lucide-react"
+import { ArrowRight, Scissors, Shirt, Shield, Package, GraduationCap, Stethoscope, UtensilsCrossed, Building2 } from "lucide-react"
 import Footer from "@/components/footer"
 import BookNowButton from "@/components/book-now-button"
 import ScrollingTestimonials from "@/components/scrolling-testimonials"
@@ -12,6 +12,7 @@ import HeroSlideshow from "@/components/hero-slideshow"
 import LogoMarquee from "@/components/logo-marquee"
 import WhyUsSection from "@/components/why-us-section"
 import BlogSection from "@/components/blog-section"
+import ProductsSection from "@/components/sections/products-section"
 // Import blog data
 import blogData from "@/lib/blog-data.json"
 
@@ -22,17 +23,17 @@ export default function Home() {
   const aboutRef = useRef<HTMLDivElement>(null)
   const isAboutInView = useInView(aboutRef, { once: true, amount: 0.2 })
 
-  const heroImages = ["/images/studio1.png", "/images/studio2.png", "/images/studio3.png", "/images/studio4.png"]
+  const heroImages = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkRgfKXCkOSqyGssT15r6biHjz6iZWE7tevw&s", "/images/studio1.png", "/images/studio2.png", "/images/studio3.png"]
 
   return (
     <main className="min-h-screen dark:bg-black bg-white">
 
       {/* Hero Section with Slideshow */}
       <section className="relative h-screen">
-        <HeroSlideshow images={heroImages}>
+        <HeroSlideshow images={heroImages} overlay={false}>
           <div className="container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
             <motion.h1
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white dark:text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -41,13 +42,13 @@ export default function Home() {
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl text-gray-200 max-w-2xl mb-8"
+              className="text-lg md:text-xl text-white dark:text-gray-200 max-w-2xl mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Where your musical journey comes to life. Professional recording, production, and music education
-              services.
+              Where professional excellence meets quality craftsmanship. Premium workwear and uniform solutions
+              designed for every industry.
             </motion.p>
 
             <motion.div
@@ -64,7 +65,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/services"
-                className="bg-transparent text-white font-semibold py-3 px-8 rounded-full border border-white hover:bg-white hover:text-black transition-colors duration-300"
+                className="bg-transparent text-white dark:text-white font-semibold py-3 px-8 rounded-full border border-white dark:border-white hover:bg-white hover:text-black transition-colors duration-300"
               >
                 Our Services
               </Link>
@@ -85,18 +86,20 @@ export default function Home() {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  About <span className="text-gradient">BombayFashions</span>
+                  About <span className="text-gradient">Bombay Fashions</span>
                 </h2>
                 <div className="h-1 w-20 bg-gradient mb-6"></div>
                 <p className="dark:text-gray-300 text-gray-700 mb-6">
-                  Founded in 2010, BombayFashions has been the creative home for hundreds of artists, from
-                  emerging talents to established stars. Our state-of-the-art facility combines cutting-edge technology
-                  with acoustic perfection.
+                  We at Bombay Fashion strive to create and maintain a lifestyle and standard that is unmatched in the textile & uniform design industry.
                 </p>
                 <p className="dark:text-gray-300 text-gray-700 mb-6">
-                  We believe that great music production is a collaboration between technical excellence and artistic
-                  vision. Our team of experienced engineers and producers work closely with artists to bring their
-                  musical ideas to life.
+                  With 75 state-of-the-art machines at our disposal in our in-house manufacturing unit, we ensure the production of the highest grade fabric. Our dedicated design team specializes in crafting bespoke designs tailored to the unique needs of schools, hospitals, and restaurants, ensuring that every piece meets the highest standards of quality and aesthetics.
+                </p>
+                <p className="dark:text-gray-300 text-gray-700 mb-6">
+                  This level of customisation adds a personal touch to all the products we deliver to our clients. All our endeavours are underpinned by a commitment to compliance with REACH regulations, further reinforcing our dedication to sustainability and excellence.
+                </p>
+                <p className="dark:text-gray-300 text-gray-700 mb-6">
+                  These are some of the practices that highlight our vision of a chic yet traditional; premium and environment friendly brand.
                 </p>
                 <Link href="/founder" className="inline-flex items-center text-gradient font-semibold hover:underline">
                   Meet Our Founder <ArrowRight className="ml-1 w-4 h-4" />
@@ -110,14 +113,15 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative h-[500px] rounded-xl overflow-hidden">
-                <Image src="/images/founder.png" alt="Studio Founder" fill className="object-cover" />
+              <div className="relative h-[500px] rounded-xl overflow-hidden shadow-2xl">
+                <Image src="/images/founder.png" alt="Bombay Fashions Manufacturing" fill className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
               </div>
               <div className="absolute -bottom-6 -left-6 bg-gradient p-6 rounded-xl shadow-xl max-w-xs">
-                <p className="text-white font-medium">
-                  "Our mission is to create a space where artists feel inspired to create their best work."
+                <p className="text-white font-medium !text-white">
+                  "Our mission is to create uniforms that empower professionals to perform at their best."
                 </p>
-                <p className="text-white text-sm mt-2">- Raj Kapoor, Founder</p>
+                <p className="text-white text-sm mt-2 !text-white">- Raj Kapoor, Founder</p>
               </div>
             </motion.div>
           </div>
@@ -125,44 +129,62 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative overflow-hidden dark:bg-black bg-white">
+        <div className="services-bg">
+          <div className="blur-circle-1"></div>
+          <div className="blur-circle-2"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our <span className="text-gradient">Services</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white text-gray-900">
+              Our <span className="text-gradient">Uniform Categories</span>
             </h2>
-            <div className="h-1 w-20 bg-gradient mx-auto"></div>
+            <div className="h-1 w-20 bg-gradient mx-auto mb-6"></div>
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Explore our comprehensive range of professional uniforms designed to meet the highest standards of quality and comfort across various industries.
+            </p>
           </div>
 
-          <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={servicesRef} className="services-grid">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="service-card rounded-xl overflow-hidden h-80"
                 initial={{ opacity: 0, y: 50 }}
                 animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="service-card-new group"
               >
-                <Image
-                  src={service.image || "/placeholder.svg"}
-                  alt={service.title}
-                  width={500}
-                  height={500}
-                  className="w-full h-full object-cover"
-                />
-                <div className="service-card-content">
-                  <div className="flex items-center mb-2">
-                    <div className="w-10 h-10 rounded-full bg-gradient flex items-center justify-center mr-3">
+                <div className="image-container">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    width={500}
+                    height={375}
+                    className="object-cover"
+                  />
+                  <div className="overlay" />
+                </div>
+                
+                <div className="content">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="icon-container">
                       {service.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-white service-card-title">{service.title}</h3>
+                    <h3 className="title">
+                      {service.title}
+                    </h3>
                   </div>
-                  <p className="text-gray-200 text-sm service-card-description">{service.description}</p>
+                  
+                  <p className="description">
+                    {service.description}
+                  </p>
+
                   <Link
                     href={service.link}
-                    className="mt-4 inline-flex items-center text-white text-sm font-medium hover:underline"
+                    className="learn-more"
                   >
-                    Learn More <ArrowRight className="ml-1 w-4 h-4" />
+                    Learn More <ArrowRight className="icon" />
                   </Link>
                 </div>
               </motion.div>
@@ -183,6 +205,9 @@ export default function Home() {
         ]} 
       />
 
+      {/* Products Section */}
+      <ProductsSection />
+
       {/* Why Choose Us Section */}
       <WhyUsSection />
 
@@ -193,7 +218,7 @@ export default function Home() {
       <ScrollingTestimonials />
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden dark:bg-black bg-gray-50">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-[20%] left-[10%] w-32 h-32 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
           <div className="absolute bottom-[30%] right-[15%] w-40 h-40 rounded-full bg-orange-500 opacity-10 blur-3xl"></div>
@@ -201,18 +226,18 @@ export default function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to <span className="text-gradient">Create</span>?
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white text-gray-900">
+              Ready to <span className="text-gradient">Get Started</span>?
             </h2>
             <p className="dark:text-gray-300 text-gray-700 mb-8">
-              Whether you're looking to record your first single or produce a complete album, we have the expertise and
-              equipment to help you achieve your musical goals.
+              Whether you need uniforms for your team or want to create custom workwear, we have the expertise and
+              technology to help you achieve professional excellence.
             </p>
             <Link
               href="/contact"
               className="bg-gradient text-white font-semibold py-3 px-8 rounded-full hover:shadow-lg transition-shadow duration-300 inline-block"
             >
-              Book Your Session Today
+              Get Your Quote Today
             </Link>
           </div>
         </div>
@@ -225,32 +250,32 @@ export default function Home() {
 
 const services = [
   {
-    title: "Recording",
+    title: "School Uniforms",
     description:
-      "Professional audio recording services with state-of-the-art equipment and experienced sound engineers.",
-    image: "/images/recording.png",
-    icon: <Mic className="w-5 h-5 text-white" />,
-    link: "/services#recording",
+      "Complete range of school uniforms including shirts, trousers, skirts, and blazers with customizable designs and high-quality materials.",
+    image: "/placeholder.jpg",
+    icon: <GraduationCap className="w-5 h-5 text-white" />,
+    link: "/services#school",
   },
   {
-    title: "Music Production",
-    description: "Full-service music production from arrangement to mixing and mastering for a polished final product.",
-    image: "/music-producer-studio.png",
-    icon: <Music className="w-5 h-5 text-white" />,
-    link: "/services#production",
+    title: "Hospital Uniforms",
+    description: "Professional medical uniforms including scrubs, lab coats, and nursing attire designed for comfort and functionality.",
+    image: "/placeholder.jpg",
+    icon: <Stethoscope className="w-5 h-5 text-white" />,
+    link: "/services#hospital",
   },
   {
-    title: "Video Production",
-    description: "Professional music video production services to visually enhance your musical creations.",
-    image: "/images/video.png",
-    icon: <Video className="w-5 h-5 text-white" />,
-    link: "/services#video",
+    title: "Hotel & Hospitality",
+    description: "Elegant hospitality uniforms for hotels, restaurants, and service staff that combine style with durability.",
+    image: "/placeholder.jpg",
+    icon: <UtensilsCrossed className="w-5 h-5 text-white" />,
+    link: "/services#hospitality",
   },
   {
-    title: "Music Teaching",
-    description: "Expert music education for all ages and skill levels, from beginners to advanced musicians.",
-    image: "/images/teaching.png",
-    icon: <BookOpen className="w-5 h-5 text-white" />,
-    link: "/teaching",
+    title: "Corporate Uniforms",
+    description: "Professional corporate wear including formal shirts, trousers, and suits tailored to enhance your brand identity.",
+    image: "/placeholder.jpg",
+    icon: <Building2 className="w-5 h-5 text-white" />,
+    link: "/services#corporate",
   },
 ]

@@ -23,7 +23,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="relative dark:bg-[#080808] bg-gray-100 pt-16 overflow-hidden">
+    <footer className="relative bg-[#192e42] dark:bg-[#192e42] pt-16 overflow-hidden">
       {/* Background gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute bottom-[20%] left-[10%] w-32 h-32 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
@@ -37,9 +37,9 @@ export default function Footer() {
             <Link href="/" className="flex items-center group mb-6">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                 <h1 className="text-xl font-bold relative">
-                  <span className="text-gradient">BOMBAYFASHIONS</span>
+                  <span className="text-white">BOMBAYFASHIONS</span>
                   <motion.span
-                    className="block text-xs text-center dark:text-white/70 text-black/70"
+                    className="block text-xs text-center text-gray-300"
                     animate={{ opacity: [0.5, 1, 0.5] }}
                     transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                   >
@@ -48,9 +48,9 @@ export default function Footer() {
                 </h1>
               </motion.div>
             </Link>
-            <p className="dark:text-gray-400 text-gray-600 mb-6">
-              Thane's premier music and recording studio, offering professional recording services, music production,
-              and teaching to help artists bring their musical vision to life.
+            <p className="text-gray-300 mb-6">
+              Premier workwear and uniform manufacturing company, offering professional design services, quality production,
+              and customization to help businesses achieve their professional image goals.
             </p>
             <div className="flex space-x-4">
               <SocialIcon icon={<Facebook size={18} />} />
@@ -63,36 +63,36 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-bold mb-6 relative inline-block">
-              <span className="text-gradient">Quick Links</span>
-              <div className="h-1 w-full bg-gradient mt-1"></div>
+              <span className="text-white">Quick Links</span>
+              <div className="h-1 w-full bg-yellow-300 mt-1"></div>
             </h3>
 
             {/* First row */}
             <div className="mb-4">
               <div className="flex flex-col sm:flex-row">
                 <div className="flex items-center mb-4 sm:mb-0 sm:w-1/3">
-                  <Home className="w-5 h-5 text-purple-500 mr-3 shrink-0" />
+                  <Home className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
                   <Link
                     href="/"
-                    className="dark:text-gray-400 text-gray-600 hover:text-gradient transition-colors whitespace-nowrap"
+                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
                   >
                     Home
                   </Link>
                 </div>
                 <div className="flex items-center mb-4 sm:mb-0 sm:w-1/3">
-                  <Headphones className="w-5 h-5 text-purple-500 mr-3 shrink-0" />
+                  <Headphones className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
                   <Link
-                    href="/equipment"
-                    className="dark:text-gray-400 text-gray-600 hover:text-gradient transition-colors whitespace-nowrap"
+                    href="/products"
+                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
                   >
-                    Equipment
+                    Products
                   </Link>
                 </div>
                 <div className="flex items-center sm:w-1/3">
-                  <Music2 className="w-5 h-5 text-purple-500 mr-3 shrink-0" />
+                  <Music2 className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
                   <Link
                     href="/services"
-                    className="dark:text-gray-400 text-gray-600 hover:text-gradient transition-colors whitespace-nowrap"
+                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
                   >
                     Services
                   </Link>
@@ -104,28 +104,28 @@ export default function Footer() {
             <div>
               <div className="flex flex-col sm:flex-row">
                 <div className="flex items-center mb-4 sm:mb-0 sm:w-1/3">
-                  <Mic2 className="w-5 h-5 text-purple-500 mr-3 shrink-0" />
+                  <Mic2 className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
                   <Link
                     href="/studio"
-                    className="dark:text-gray-400 text-gray-600 hover:text-gradient transition-colors whitespace-nowrap"
+                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
                   >
                     Studio
                   </Link>
                 </div>
                 <div className="flex items-center mb-4 sm:mb-0 sm:w-1/3">
-                  <BookOpen className="w-5 h-5 text-purple-500 mr-3 shrink-0" />
+                  <BookOpen className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
                   <Link
-                    href="/teaching"
-                    className="dark:text-gray-400 text-gray-600 hover:text-gradient transition-colors whitespace-nowrap"
+                    href="/contact"
+                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
                   >
-                    Teaching
+                    Contact
                   </Link>
                 </div>
                 <div className="flex items-center sm:w-1/3">
-                  <User className="w-5 h-5 text-purple-500 mr-3 shrink-0" />
+                  <User className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
                   <Link
                     href="/founder"
-                    className="dark:text-gray-400 text-gray-600 hover:text-gradient transition-colors whitespace-nowrap"
+                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
                   >
                     Founder
                   </Link>
@@ -137,30 +137,30 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-bold mb-6 relative inline-block">
-              <span className="text-gradient">Contact Us</span>
-              <div className="h-1 w-full bg-gradient mt-1"></div>
+              <span className="text-white">Contact Us</span>
+              <div className="h-1 w-full bg-yellow-300 mt-1"></div>
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <MapPin className="w-5 h-5 text-purple-500 mr-3 mt-1 shrink-0" />
-                <span className="dark:text-gray-400 text-gray-600">
-                  123 Music Avenue, Thane West, Maharashtra 400601, India
+                <MapPin className="w-5 h-5 text-yellow-300 mr-3 mt-1 shrink-0" />
+                <span className="text-gray-300">
+                  123 Fashion Avenue, Mumbai, Maharashtra 400001, India
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone className="w-5 h-5 text-purple-500 mr-3 shrink-0" />
+                <Phone className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
                 <a
                   href="tel:+919876543210"
-                  className="dark:text-gray-400 text-gray-600 hover:text-gradient transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors"
                 >
                   +91 98765 43210
                 </a>
               </li>
               <li className="flex items-center">
-                <Mail className="w-5 h-5 text-purple-500 mr-3 shrink-0" />
+                <Mail className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
                 <a
                   href="mailto:info@bombayfashions.com"
-                  className="dark:text-gray-400 text-gray-600 hover:text-gradient transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors"
                 >
                   info@bombayfashions.com
                 </a>
@@ -170,18 +170,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t dark:border-gray-800 border-gray-200 py-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="dark:text-gray-500 text-gray-500 text-sm mb-4 md:mb-0">
+        <div className="border-t border-gray-600 py-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm mb-4 md:mb-0">
             © {currentYear} BombayFashions . All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <Link href="/privacy" className="dark:text-gray-400 text-gray-600 text-sm hover:text-gradient">
+            <Link href="/privacy" className="text-gray-300 text-sm hover:text-white">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="dark:text-gray-400 text-gray-600 text-sm hover:text-gradient">
+            <Link href="/terms" className="text-gray-300 text-sm hover:text-white">
               Terms of Service
             </Link>
-            <Link href="/contact" className="dark:text-gray-400 text-gray-600 text-sm hover:text-gradient">
+            <Link href="/contact" className="text-gray-300 text-sm hover:text-white">
               Contact
             </Link>
           </div>

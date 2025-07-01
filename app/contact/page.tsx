@@ -140,7 +140,7 @@ export default function Contact() {
                 <option value="recording">Recording</option>
                 <option value="production">Music Production</option>
                 <option value="mixing">Mixing & Mastering</option>
-                <option value="teaching">Music Teaching</option>
+                <option value="consultation">Design Consultation</option>
               </select>
             </div>
 

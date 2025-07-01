@@ -3,44 +3,44 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import BookNowButton from "@/components/book-now-button"
-import { Music, Mic, Video, Headphones, Sliders, Laptop } from "lucide-react"
+import { Scissors, Shirt, Shield, Package, Palette, Users } from "lucide-react"
 
 const services = [
   {
-    title: "Recording",
-    icon: <Mic className="w-8 h-8" />,
-    description: "Professional vocal and instrument recording with top-tier equipment and acoustically treated space.",
-    image: "/images/recording.png",
+    title: "Custom Manufacturing",
+    icon: <Scissors className="w-8 h-8" />,
+    description: "Professional uniform manufacturing with state-of-the-art equipment and experienced tailors for all industries.",
+    image: "/images/studio1.png",
   },
   {
-    title: "Mixing & Mastering",
-    icon: <Sliders className="w-8 h-8" />,
-    description: "Expert mixing and mastering to give your tracks the professional polish they deserve.",
-    image: "/images/mixing.jpg",
+    title: "Design Services",
+    icon: <Palette className="w-8 h-8" />,
+    description: "Expert design consultation to create professional uniforms that reflect your brand identity.",
+    image: "/images/studio2.png",
   },
   {
-    title: "Music Production",
-    icon: <Laptop className="w-8 h-8" />,
-    description: "Full-service music production from composition to final master with experienced producers.",
-    image: "/images/production.jpg",
+    title: "Quality Control",
+    icon: <Shield className="w-8 h-8" />,
+    description: "Rigorous quality assurance processes to ensure every uniform meets our high standards and durability requirements.",
+    image: "/images/studio3.png",
   },
   {
-    title: "Jamming Sessions",
-    icon: <Music className="w-8 h-8" />,
-    description: "Fully equipped space for band practice and creative collaboration with professional sound.",
-    image: "/images/jamming.jpg",
+    title: "Bulk Orders",
+    icon: <Package className="w-8 h-8" />,
+    description: "Efficient bulk uniform production for schools, hospitals, restaurants, and corporate clients with competitive pricing.",
+    image: "/images/studio4.png",
   },
   {
-    title: "Video Shooting",
-    icon: <Video className="w-8 h-8" />,
-    description: "Professional video production with green screen, lighting setup, and high-quality cameras.",
-    image: "/images/video.png",
+    title: "Customization",
+    icon: <Shirt className="w-8 h-8" />,
+    description: "Personalized branding, logo embroidery, and custom fitting services to meet your specific requirements.",
+    image: "/images/studio5.png",
   },
   {
-    title: "Music Teaching",
-    icon: <Headphones className="w-8 h-8" />,
-    description: "Learn vocals, guitar, piano, and more from experienced instructors in a professional environment.",
-    image: "/images/teaching.png",
+    title: "Consultation",
+    icon: <Users className="w-8 h-8" />,
+    description: "Professional consultation to help you choose the right uniforms and fabrics for your industry needs.",
+    image: "/images/studio6.png",
   },
 ]
 
@@ -107,8 +107,8 @@ export default function Services() {
               <span className="text-gradient">What We Do Best</span>
             </h2>
             <p className="text-gray-400">
-              Our team will help you find the missing piece of your music with state-of-the-art equipment and years of
-              experience
+              Our team will help you create the perfect professional image with state-of-the-art manufacturing equipment and years of
+              experience in workwear design
             </p>
           </motion.div>
 
@@ -182,16 +182,16 @@ export default function Services() {
             className="text-center max-w-3xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to <span className="text-gradient">Create Something Amazing?</span>
+              Ready to <span className="text-gradient">Elevate Your Professional Image?</span>
             </h2>
             <p className="text-gray-400 mb-8">
-              Book your session now and let's bring your musical vision to life with our professional services and
-              state-of-the-art equipment.
+              Contact us now and let's bring your uniform vision to life with our professional services and
+              state-of-the-art manufacturing equipment.
             </p>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
-              <a href="#book-now" className="bg-gradient text-white font-semibold py-3 px-8 rounded-full inline-block">
-                Book a Session
+              <a href="/contact" className="bg-gradient text-white font-semibold py-3 px-8 rounded-full inline-block">
+                Get Your Quote
               </a>
             </motion.div>
           </motion.div>

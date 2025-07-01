@@ -25,13 +25,13 @@ export default function SoundEffects() {
 
       // Load audio files
       if (hoverSoundRef.current) {
-        loadAudio(hoverSoundRef, "/sounds/hover.mp3")
+      loadAudio(hoverSoundRef, "/sounds/hover.mp3")
       }
       if (clickSoundRef.current) {
-        loadAudio(clickSoundRef, "/sounds/click.mp3")
+      loadAudio(clickSoundRef, "/sounds/click.mp3")
       }
       if (navSoundRef.current) {
-        loadAudio(navSoundRef, "/sounds/nav.mp3")
+      loadAudio(navSoundRef, "/sounds/nav.mp3")
       }
 
       // Add event listeners

@@ -3,9 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --primary-gradient: linear-gradient(90deg, #8a2be2, #ff6347);
-  --secondary_gradient: linear-gradient(90deg, #ff6347, #8a2be2);
-  --neon-glow: 0 0 10px rgba(138, 43, 226, 0.5), 0 0 20px rgba(255, 99, 71, 0.3);
+  --primary-blue: #192e42;
+  --primary-gradient: linear-gradient(90deg, #192e42, #1a3249);
+  --secondary_gradient: linear-gradient(90deg, #1a3249, #1b3651);
+  --blue-gradient: linear-gradient(135deg, #192e42, #1a3249, #1b3651);
+  --workwear-gradient: linear-gradient(45deg, #192e42, #1a3249, #203a58);
+  --neon-glow: 0 0 10px rgba(25, 46, 66, 0.5), 0 0 20px rgba(26, 50, 73, 0.3);
+  --blue-glow: 0 0 15px rgba(25, 46, 66, 0.6), 0 0 30px rgba(26, 50, 73, 0.4);
+  
+  /* Light theme colors */
+  --light-bg: #ffffff;
+  --light-surface: #f8fafc;
+  --light-text: #1e293b;
+  --light-text-muted: #64748b;
+  --light-border: #e2e8f0;
 }
 
 @layer base {
@@ -58,7 +69,6 @@
 @layer base {
   body {
     @apply bg-background text-foreground dark:bg-black dark:text-white;
-    cursor: none;
   }
 }
 
@@ -82,7 +92,82 @@
 }
 
 .text-glow {
-  text-shadow: 0 0 10px rgba(138, 43, 226, 0.7), 0 0 20px rgba(255, 99, 71, 0.5);
+  text-shadow: 0 0 10px rgba(25, 46, 66, 0.7), 0 0 20px rgba(26, 50, 73, 0.5);
+}
+
+.blue-gradient {
+  background: var(--blue-gradient);
+}
+
+.workwear-gradient {
+  background: var(--workwear-gradient);
+}
+
+.blue-glow {
+  box-shadow: var(--blue-glow);
+}
+
+/* Light theme utilities */
+.light-theme-bg {
+  background-color: var(--light-bg);
+}
+
+.light-theme-surface {
+  background-color: var(--light-surface);
+}
+
+.light-theme-text {
+  color: var(--light-text);
+}
+
+.light-theme-text-muted {
+  color: var(--light-text-muted);
+}
+
+.light-theme-border {
+  border-color: var(--light-border);
+}
+
+/* Enhanced light mode support */
+.light .bg-gray-900 {
+  background-color: var(--light-bg) !important;
+}
+
+.light .bg-gray-800 {
+  background-color: var(--light-surface) !important;
+}
+
+.light .text-gray-100,
+.light .text-gray-200,
+.light .text-white {
+  color: var(--light-text) !important;
+}
+
+.light .text-gray-300,
+.light .text-gray-400 {
+  color: var(--light-text-muted) !important;
+}
+
+.light .border-gray-700,
+.light .border-gray-800 {
+  border-color: var(--light-border) !important;
+}
+
+/* Primary color updates for light theme */
+.light .bg-blue-600,
+.light .bg-blue-500 {
+  background-color: var(--primary-blue) !important;
+}
+
+.light .text-blue-600,
+.light .text-blue-500,
+.light .text-blue-400 {
+  color: var(--primary-blue) !important;
+}
+
+.light .border-blue-600,
+.light .border-blue-500 {
+  border-color: var(--primary-blue) !important;
 }
 
 .noise-bg {
@@ -133,7 +218,7 @@
   display: block;
   width: 3px;
   height: 100%;
-  background: linear-gradient(to bottom, #8a2be2, #ff6347);
+  background: linear-gradient(to bottom, #192e42, #1a3249);
   animation: wave 1.2s infinite ease-in-out;
   border-radius: 2px;
 }
@@ -673,40 +758,6 @@
   width: 0%;
 }
 
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: rgba(138, 43, 226, 0.5);
-  mix-blend-mode: difference;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, background-color 0.3s;
-}
-
-.custom-cursor.hover {
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 99, 71, 0.3);
-}
-
-.custom-cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: white;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-}
-
 .course-card {
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -779,8 +830,96 @@
   @apply bg-white;
 }
 
+/* Change text-white to dark in light mode, but not on blue backgrounds */
 .light .text-white {
   @apply text-gray-900;
+}
+
+/* Force white text on blue backgrounds and gradients - comprehensive fix */
+.light [class*="bg-[#192e42]"] .text-white,
+.light [class*="bg-[#192e42]"] .text-gray-300,
+.light [class*="bg-[#192e42]"] .text-gray-200,
+.light [class*="bg-[#192e42]"] .text-gray-400,
+.light .bg-\[\#192e42\] .text-white,
+.light .bg-\[\#192e42\] .text-gray-300,
+.light .bg-\[\#192e42\] .text-gray-200,
+.light .bg-\[\#192e42\] .text-gray-400 {
+  color: white !important;
+}
+
+/* Force white text on blue gradient backgrounds */
+.light [class*="from-[#192e42]"] .text-white,
+.light [class*="from-[#192e42]"] .text-gray-300,
+.light [class*="from-[#192e42]"] .text-gray-200,
+.light [class*="from-[#192e42]"] .text-gray-400,
+.light [class*="bg-gradient-to"] [class*="from-[#192e42]"] .text-white,
+.light [class*="bg-gradient-to"] [class*="from-[#192e42]"] .text-gray-300,
+.light [class*="bg-gradient-to"] [class*="from-[#192e42]"] .text-gray-200,
+.light [class*="bg-gradient-to"] [class*="from-[#192e42]"] .text-gray-400 {
+  color: white !important;
+}
+
+/* Ensure yellow stays visible on blue backgrounds */
+.light [class*="bg-[#192e42]"] .text-yellow-300,
+.light [class*="from-[#192e42]"] .text-yellow-300,
+.light .bg-\[\#192e42\] .text-yellow-300 {
+  color: #fde047 !important;
+}
+
+/* Footer specific fixes */
+.light footer[class*="bg-[#192e42]"] .text-white,
+.light footer[class*="bg-[#192e42]"] .text-gray-300,
+.light footer[class*="bg-[#192e42]"] .text-gray-200,
+.light footer[class*="bg-[#192e42]"] .text-gray-400,
+.light footer.bg-\[\#192e42\] .text-white,
+.light footer.bg-\[\#192e42\] .text-gray-300,
+.light footer.bg-\[\#192e42\] .text-gray-200,
+.light footer.bg-\[\#192e42\] .text-gray-400 {
+  color: white !important;
+}
+
+/* Direct child selectors for blue backgrounds */
+.light .bg-\[\#192e42\] > * .text-white,
+.light .bg-\[\#192e42\] > * .text-gray-300,
+.light .bg-\[\#192e42\] > * .text-gray-200,
+.light .bg-\[\#192e42\] > * .text-gray-400 {
+  color: white !important;
+}
+
+/* Gradient button text fixes */
+.light .bg-gradient-to-r[class*="from-[#192e42]"],
+.light .bg-gradient-to-br[class*="from-[#192e42]"],
+.light .bg-gradient-to-l[class*="from-[#192e42]"],
+.light .bg-gradient-to-bl[class*="from-[#192e42]"] {
+  color: white !important;
+}
+
+/* Force white text on any gradient background */
+.light .bg-gradient,
+.light .bg-gradient *,
+.light .bg-gradient p,
+.light .bg-gradient h1,
+.light .bg-gradient h2,
+.light .bg-gradient h3,
+.light .bg-gradient h4,
+.light .bg-gradient h5,
+.light .bg-gradient h6 {
+  color: white !important;
+}
+
+/* Fix for any element with blue background */
+.light .bg-\[\#192e42\] {
+  color: white !important;
+}
+
+/* Fix heading colors specifically on blue backgrounds */
+.light .bg-\[\#192e42\] h1,
+.light .bg-\[\#192e42\] h2,
+.light .bg-\[\#192e42\] h3,
+.light .bg-\[\#192e42\] p,
+.light .bg-\[\#192e42\] span,
+.light .bg-\[\#192e42\] a {
+  color: white !important;
 }
 
 .light .text-gray-400 {
@@ -801,4 +940,144 @@
 
 .light .bg-\[\#252525\] {
   @apply bg-gray-200;
+}
+
+/* Additional light mode improvements */
+/* Ensure service card content has proper overlay in light mode */
+.service-card .service-card-content {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Force white text on service cards for better visibility */
+.service-card .service-card-title,
+.service-card .service-card-description,
+.service-card a {
+  color: white !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Hero text improvements for light mode */
+.hero-text-shadow {
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.9),
+    1px 1px 2px rgba(0, 0, 0, 0.8),
+    0px 0px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Ensure proper contrast for headings in light mode */
+.light h1, .light h2, .light h3 {
+  color: #1f2937 !important;
+}
+
+.light h1.text-white, .light h2.text-white, .light h3.text-white {
+  color: white !important;
+}
+
+/* Ensure hero slideshow background images work in light mode */
+.hero-slideshow-bg {
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Force hero section to show background images in light mode */
+.light section[class*="h-screen"] div[style*="background-image"] {
+  opacity: 1 !important;
+  display: block !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* Ensure hero background container visibility */
+.hero-bg-container {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+}
+
+/* Service Card Styles */
+.service-card-new {
+  @apply relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden;
+  @apply shadow-lg hover:shadow-2xl transition-all duration-500;
+  @apply transform hover:-translate-y-2;
+}
+
+.service-card-new .image-container {
+  @apply aspect-[4/3] relative overflow-hidden;
+}
+
+.service-card-new .image-container img {
+  @apply object-cover w-full h-full;
+  @apply transition-transform duration-500;
+}
+
+.service-card-new:hover .image-container img {
+  @apply scale-110;
+}
+
+.service-card-new .overlay {
+  @apply absolute inset-0;
+  @apply bg-gradient-to-t from-black/60 via-black/20 to-transparent;
+}
+
+.service-card-new .content {
+  @apply p-6 relative;
+}
+
+.service-card-new .icon-container {
+  @apply w-10 h-10 rounded-full bg-gradient;
+  @apply flex items-center justify-center;
+}
+
+.service-card-new .title {
+  @apply text-xl font-bold;
+  @apply text-gray-900 dark:text-white;
+  @apply group-hover:text-[#192e42] dark:group-hover:text-blue-400;
+}
+
+.service-card-new .description {
+  @apply text-gray-600 dark:text-gray-300;
+  @apply mb-4 line-clamp-2;
+}
+
+.service-card-new .learn-more {
+  @apply inline-flex items-center;
+  @apply text-[#192e42] dark:text-blue-400 font-semibold;
+  @apply group-hover:text-blue-600 dark:group-hover:text-blue-300;
+}
+
+.service-card-new .learn-more svg {
+  @apply ml-2 w-4 h-4;
+  @apply transition-transform;
+}
+
+.service-card-new:hover .learn-more svg {
+  @apply translate-x-1;
+}
+
+/* Service Card Grid Layout */
+.services-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4;
+  @apply gap-8;
+}
+
+/* Service Section Background Effects */
+.services-bg {
+  @apply absolute inset-0 z-0;
+}
+
+.services-bg .blur-circle-1 {
+  @apply absolute top-[20%] left-[10%];
+  @apply w-32 h-32 rounded-full;
+  @apply bg-purple-500 opacity-10 blur-3xl;
+}
+
+.services-bg .blur-circle-2 {
+  @apply absolute bottom-[30%] right-[15%];
+  @apply w-40 h-40 rounded-full;
+  @apply bg-orange-500 opacity-10 blur-3xl;
 }

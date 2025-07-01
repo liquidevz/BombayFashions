@@ -9,10 +9,11 @@ import { trackEvent } from "../providers/analytics"
 
 const navItems = [
   { name: "HOME", href: "/" },
-  { name: "EQUIPMENT", href: "/equipment" },
+  { name: "PRODUCTS", href: "/products" },
   { name: "SERVICES", href: "/services" },
   { name: "STUDIO", href: "/studio" },
-  { name: "TEACHING", href: "/teaching" },
+  { name: "BLOG", href: "/blog" },
+  { name: "CONTACT", href: "/contact" },
   { name: "FOUNDER", href: "/founder" },
 ]
 
@@ -74,8 +75,8 @@ export default function Navbar() {
       <motion.header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "dark:bg-black dark:bg-opacity-80 bg-white bg-opacity-80 backdrop-blur-md py-2 shadow-md"
-            : "bg-transparent py-4"
+            ? "dark:bg-black dark:bg-opacity-90 bg-white bg-opacity-90 backdrop-blur-md py-3 shadow-md"
+            : "dark:bg-black dark:bg-opacity-70 bg-white bg-opacity-70 backdrop-blur-sm py-3"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
