@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import BookNowButton from "@/components/book-now-button"
+
 import { Scissors, Shirt, Shield, Package, Palette, Users } from "lucide-react"
 
 const services = [

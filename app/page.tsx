@@ -6,7 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Scissors, Shirt, Shield, Package, GraduationCap, Stethoscope, UtensilsCrossed, Building2 } from "lucide-react"
 import Footer from "@/components/footer"
-import BookNowButton from "@/components/book-now-button"
+
 import ScrollingTestimonials from "@/components/scrolling-testimonials"
 import HeroSlideshow from "@/components/hero-slideshow"
 import LogoMarquee from "@/components/logo-marquee"
@@ -252,7 +252,7 @@ export default function Home() {
         </div>
       </section>
 
-      <BookNowButton />
+      {/* <BookNowButton /> */}
     </main>
   )
 }

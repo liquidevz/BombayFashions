@@ -5,7 +5,22 @@
   "installCommand": "npm install --legacy-peer-deps",
   "redirects": [
     {
-      "source": "/sopranos-studio",
+      "source": "/founder",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/studio",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/teaching",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/equipment",
       "destination": "/",
       "permanent": true
     }
@@ -25,6 +40,19 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
         }
       ]
     }
