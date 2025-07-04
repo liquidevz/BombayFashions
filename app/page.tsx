@@ -7,7 +7,6 @@ import Image from "next/image"
 import { ArrowRight, Scissors, Shirt, Shield, Package, GraduationCap, Stethoscope, UtensilsCrossed, Building2 } from "lucide-react"
 // import Footer from "@/components/footer"
 
-import ScrollingTestimonials from "@/components/scrolling-testimonials"
 import HeroSlideshow from "@/components/hero-slideshow"
 import LogoMarquee from "@/components/logo-marquee"
 import WhyUsSection from "@/components/why-us-section"
@@ -231,9 +230,6 @@ function HomeContent() {
 
       {/* Blog Section */}
       <BlogSection blogs={blogData.blogs} />
-
-      {/* Testimonials Section */}
-      {/* <ScrollingTestimonials /> */}
 
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden dark:bg-black bg-gray-50">

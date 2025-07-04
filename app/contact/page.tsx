@@ -3,8 +3,9 @@
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Building2, Mail, Phone, MapPin, Loader2, Check, Clock } from "lucide-react"
-import BookingForm from "@/components/booking-form"
+import BookingForm from "@/components/forms/booking-form"
 import SuspenseWrapper from "@/components/providers/suspense-wrapper"
+import GoogleMapComponent from "@/components/ui/google-map"
 
 const categories = [
   "Corporate Uniforms",
@@ -111,14 +112,14 @@ function ContactContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="bg-gray-50 p-8 rounded-2xl"
+                className="bg-gray-50 p-8 rounded-2xl h-full flex flex-col"
               >
                 <h2 className="text-2xl font-bold mb-6 text-gray-900">Get in Touch</h2>
                 <p className="text-gray-600 mb-8">
                   Have questions about our uniform manufacturing services? We're here to help you create the perfect professional attire for your needs.
                 </p>
 
-                <div className="space-y-6">
+                <div className="space-y-6 mb-8">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 rounded-full bg-gradient flex items-center justify-center flex-shrink-0">
                       <Building2 className="w-6 h-6 text-white" />
@@ -169,6 +170,11 @@ function ContactContent() {
                     </div>
                   </div>
                 </div>
+
+                {/* Map */}
+                <div className="mt-auto rounded-xl overflow-hidden">
+                  <GoogleMapComponent />
+                </div>
               </motion.div>
             </div>
 
@@ -178,8 +184,9 @@ function ContactContent() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
+              className="h-full"
             >
-              <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 h-full">
                 <h2 className="text-2xl font-bold mb-6 text-gray-900">Send us a Message</h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">

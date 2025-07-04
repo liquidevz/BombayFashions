@@ -52,28 +52,3 @@ export async function submitBookingForm(formData: FormData) {
     return { success: false, message: "An unexpected error occurred" }
   }
 }
-
-// Demo booking form action
-export async function submitDemoForm(formData: FormData) {
-  try {
-    const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      phone: formData.get("phone") as string,
-      course: formData.get("course") as string,
-      message: formData.get("message") as string,
-    }
-
-    // Validate required fields
-    if (!data.name || !data.email || !data.phone || !data.course) {
-      return { success: false, message: "Please fill all required fields" }
-    }
-
-    // Send email
-    const result = await sendEmail(data, "demo")
-    return result
-  } catch (error) {
-    console.error("Error in demo form submission:", error)
-    return { success: false, message: "An unexpected error occurred" }
-  }
-}

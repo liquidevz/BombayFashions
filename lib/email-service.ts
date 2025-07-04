@@ -3,38 +3,33 @@
 import nodemailer from "nodemailer"
 
 // Email template types
-type EmailTemplate = "contact" | "booking" | "demo"
+type EmailTemplate = "contact" | "booking"
 
 // Email data interface
 interface EmailData {
   name: string
   email: string
-  subject?: string
-  message?: string
   phone?: string
+  whatsapp?: string
   service?: string
-  course?: string
+  message?: string
   date?: string
   time?: string
-  whatsapp?: string
-  [key: string]: any // For any additional fields
 }
 
 // Format data into HTML for email body
 function formatDataToHtml(data: EmailData, template: EmailTemplate): string {
   // Common header and footer
   const header = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;">
-      <div style="background: linear-gradient(90deg, #8a2be2, #ff6347); padding: 15px; border-radius: 5px 5px 0 0;">
-        <h2 style="color: white; margin: 0; text-align: center;">BombayFashions </h2>
-        <p style="color: white; margin: 5px 0 0; text-align: center; font-size: 14px;">
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <div style="background: linear-gradient(to right, #8a2be2, #4a00e0); padding: 20px; border-radius: 10px 10px 0 0;">
+        <p style="color: white; font-size: 24px; margin: 0; padding: 10px 0;">
   `
 
   const footer = `
       </div>
-      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0; color: #666; font-size: 12px; text-align: center;">
-        <p>© ${new Date().getFullYear()} BombayFashions . All rights reserved.</p>
-        <p>123 Music Avenue, Thane West, Maharashtra 400601, India</p>
+      <div style="background-color: #f8f9fa; padding: 20px; border-radius: 0 0 10px 10px; margin-top: 20px; text-align: center;">
+        <p style="color: #6c757d; margin: 0;">© ${new Date().getFullYear()} BombayFashions . All rights reserved.</p>
       </div>
     </div>
   `
@@ -73,22 +68,6 @@ function formatDataToHtml(data: EmailData, template: EmailTemplate): string {
         </div>
       `
       break
-
-    case "demo":
-      title = "New Demo Session Request"
-      content = `
-        <div style="margin-top: 20px;">
-          <p><strong>Name:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <p><strong>Phone:</strong> ${data.phone || "Not provided"}</p>
-          <p><strong>Course:</strong> ${data.course || "Not specified"}</p>
-          <p><strong>Message:</strong></p>
-          <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin-top: 10px;">
-            ${data.message || "No message provided"}
-          </div>
-        </div>
-      `
-      break
   }
 
   return `${header}${title}</p></div>${content}${footer}`
@@ -111,16 +90,13 @@ export async function sendEmail(
     })
 
     // Format subject based on template
-    let subject = "BombayFashions  - "
+    let subject = "BombayFashions  - "
     switch (template) {
       case "contact":
         subject += "New Contact Form Submission"
         break
       case "booking":
         subject += "New Booking Request"
-        break
-      case "demo":
-        subject += "New Demo Session Request"
         break
     }
 
