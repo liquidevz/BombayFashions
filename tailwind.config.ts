@@ -97,6 +97,7 @@ const config: Config = {
       },
       fontFamily: {
         seasons: ['var(--font-seasons)', 'sans-serif'],
+        poppins: ['var(--font-poppins)', 'sans-serif'],
       },
     },
   },

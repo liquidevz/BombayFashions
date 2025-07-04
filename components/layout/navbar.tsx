@@ -9,6 +9,7 @@ import { trackEvent } from "../providers/analytics"
 
 const navItems = [
   { name: "HOME", href: "/" },
+  { name: "ABOUT", href: "/about" },
   { name: "PRODUCTS", href: "/products" },
   { name: "SERVICES", href: "/services" },
   { name: "BLOG", href: "/blog" },
@@ -76,7 +77,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-medium relative ${
+                className={`text-sm font-medium font-seasons relative ${
                   activeItem === item.name
                     ? "text-gradient"
                     : "text-gray-700 hover:text-black"
