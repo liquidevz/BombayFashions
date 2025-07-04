@@ -1,31 +1,26 @@
-import type React from "react"
 import type { Metadata } from "next"
-import { Montserrat } from "next/font/google"
 import "./globals.css"
-import Layout from "@/components/layout/layout"
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-})
+import Navbar from "@/components/layout/navbar"
+import Footer from "@/components/layout/footer"
+import { Analytics } from "@/components/providers/analytics"
 
 export const metadata: Metadata = {
-  title: "BombayFashions  | Thane's Premier Music & Recording Studio",
-  description: "Redefining workwear with professional uniform manufacturing, design services, and quality craftsmanship.",
-    generator: 'v0.dev'
+  title: "BombayFashions | Premium Uniform Manufacturing",
+  description: "Your trusted partner for high-quality uniforms. Serving businesses, schools, and healthcare institutions.",
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${montserrat.variable} font-sans dark:bg-black bg-white dark:text-white text-gray-900 overflow-x-hidden`}
-      >
-        <Layout>{children}</Layout>
+    <html lang="en">
+      <body className="font-seasons">
+        <Analytics />
+        <Navbar />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   )

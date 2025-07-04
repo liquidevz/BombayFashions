@@ -52,7 +52,7 @@ export default function Services() {
   const isServicesInView = useInView(servicesRef, { once: true, amount: 0.1 })
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-white">
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">
@@ -64,7 +64,7 @@ export default function Services() {
         <div className="container mx-auto px-4 relative z-10">
           <div ref={titleRef} className="text-center">
             <motion.h1
-              className="text-5xl md:text-6xl font-bold mb-4"
+              className="text-5xl md:text-6xl font-bold mb-4 text-gray-900"
               initial={{ opacity: 0, y: 20 }}
               animate={isTitleInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
@@ -73,7 +73,7 @@ export default function Services() {
             </motion.h1>
 
             <motion.div
-              className="flex items-center justify-center space-x-2 text-sm text-gray-400"
+              className="flex items-center justify-center space-x-2 text-sm text-gray-500"
               initial={{ opacity: 0 }}
               animate={isTitleInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -103,10 +103,10 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
               <span className="text-gradient">What We Do Best</span>
             </h2>
-            <p className="text-gray-400">
+            <p className="text-gray-600">
               Our team will help you create the perfect professional image with state-of-the-art manufacturing equipment and years of
               experience in workwear design
             </p>
@@ -116,7 +116,7 @@ export default function Services() {
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="bg-[#0a0a0a] rounded-xl overflow-hidden h-[400px] relative group"
+                className="bg-white rounded-xl overflow-hidden h-[400px] relative group shadow-lg border border-gray-100"
                 initial={{ opacity: 0, y: 50 }}
                 animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -131,7 +131,7 @@ export default function Services() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 </div>
 
                 <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
@@ -142,18 +142,18 @@ export default function Services() {
                     viewport={{ once: true }}
                     className="mb-4"
                   >
-                    <div className="w-12 h-12 rounded-full bg-gradient flex items-center justify-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient flex items-center justify-center mb-4 text-white">
                       {service.icon}
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
+                    <h3 className="text-2xl font-bold mb-2 text-white">{service.title}</h3>
                   </motion.div>
 
-                  <motion.p className="text-gray-400 text-sm transform opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  <motion.p className="text-gray-200 text-sm transform opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                     {service.description}
                   </motion.p>
 
                   <motion.button
-                    className="mt-4 py-2 px-4 rounded-full border border-purple-500 text-sm text-white hover:bg-purple-500 hover:bg-opacity-10 transition-colors transform opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+                    className="mt-4 py-2 px-4 rounded-full bg-white text-sm text-gray-900 hover:bg-opacity-90 transition-colors transform opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -167,7 +167,7 @@ export default function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#0a0a0a] relative overflow-hidden">
+      <section className="py-20 bg-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-[20%] left-[10%] w-32 h-32 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
           <div className="absolute bottom-[30%] right-[15%] w-40 h-40 rounded-full bg-orange-500 opacity-10 blur-3xl"></div>
@@ -181,10 +181,10 @@ export default function Services() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
               Ready to <span className="text-gradient">Elevate Your Professional Image?</span>
             </h2>
-            <p className="text-gray-400 mb-8">
+            <p className="text-gray-600 mb-8">
               Contact us now and let's bring your uniform vision to life with our professional services and
               state-of-the-art manufacturing equipment.
             </p>

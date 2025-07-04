@@ -36,21 +36,13 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center group mb-6">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                <h1 className="text-xl font-bold relative">
-                  <span className="text-white">BOMBAYFASHIONS</span>
-                  <motion.span
-                    className="block text-xs text-center text-gray-300"
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                  >
-                    STUDIO
-                  </motion.span>
-                </h1>
+                <h2 className="text-xl font-bold text-white">
+                  BOMBAYFASHIONS
+                </h2>
               </motion.div>
             </Link>
-            <p className="text-gray-300 mb-6">
-              Premier workwear and uniform manufacturing company, offering professional design services, quality production,
-              and customization to help businesses achieve their professional image goals.
+            <p className="mt-4 text-sm text-gray-300 max-w-xs">
+              Your trusted partner for high-quality uniforms. Serving businesses, schools, and healthcare institutions since 2008.
             </p>
             <div className="flex space-x-4">
               <SocialIcon icon={<Facebook size={18} />} />
@@ -62,76 +54,34 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-6 relative inline-block">
-              <span className="text-white">Quick Links</span>
-              <div className="h-1 w-full bg-yellow-300 mt-1"></div>
-            </h3>
-
-            {/* First row */}
-            <div className="mb-4">
-              <div className="flex flex-col sm:flex-row">
-                <div className="flex items-center mb-4 sm:mb-0 sm:w-1/3">
-                  <Home className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
-                  <Link
-                    href="/"
-                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
-                  >
-                    Home
-                  </Link>
-                </div>
-                <div className="flex items-center mb-4 sm:mb-0 sm:w-1/3">
-                  <Headphones className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
-                  <Link
-                    href="/products"
-                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
-                  >
-                    Products
-                  </Link>
-                </div>
-                <div className="flex items-center sm:w-1/3">
-                  <Music2 className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
-                  <Link
-                    href="/services"
-                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
-                  >
-                    Services
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Second row */}
-            <div>
-              <div className="flex flex-col sm:flex-row">
-                <div className="flex items-center mb-4 sm:mb-0 sm:w-1/3">
-                  <Mic2 className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
-                  <Link
-                    href="/studio"
-                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
-                  >
-                    Studio
-                  </Link>
-                </div>
-                <div className="flex items-center mb-4 sm:mb-0 sm:w-1/3">
-                  <BookOpen className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
-                  <Link
-                    href="/contact"
-                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
-                  >
-                    Contact
-                  </Link>
-                </div>
-                <div className="flex items-center sm:w-1/3">
-                  <User className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
-                  <Link
-                    href="/founder"
-                    className="text-gray-300 hover:text-white transition-colors whitespace-nowrap"
-                  >
-                    Founder
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/" className="text-gray-300 hover:text-white transition">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="text-gray-300 hover:text-white transition">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-gray-300 hover:text-white transition">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-gray-300 hover:text-white transition">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-gray-300 hover:text-white transition">
+                  Contact
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Contact Info */}
@@ -172,7 +122,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-600 py-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {currentYear} BombayFashions . All rights reserved.
+            © {currentYear} BombayFashions. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <Link href="/privacy" className="text-gray-300 text-sm hover:text-white">

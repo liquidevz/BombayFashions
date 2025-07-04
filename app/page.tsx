@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
@@ -23,14 +23,23 @@ export default function Home() {
   const aboutRef = useRef<HTMLDivElement>(null)
   const isAboutInView = useInView(aboutRef, { once: true, amount: 0.2 })
 
-  const heroImages = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkRgfKXCkOSqyGssT15r6biHjz6iZWE7tevw&s", "/images/studio1.png", "/images/studio2.png", "/images/studio3.png"]
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Hero section images
+  const heroImages = [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkRgfKXCkOSqyGssT15r6biHjz6iZWE7tevw&s", 
+    "/images/uniforms/corporate-1.jpg",
+    "/images/uniforms/school-1.jpg",
+    "/images/uniforms/hospital-1.jpg"
+  ]
 
   return (
     <main className="min-h-screen dark:bg-black bg-white">
 
       {/* Hero Section with Slideshow */}
       <section className="relative h-screen">
-        <HeroSlideshow images={heroImages} overlay={false}>
+        <HeroSlideshow images={heroImages}>
           <div className="container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
             <motion.h1
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-white dark:text-white mb-6"
@@ -74,8 +83,7 @@ export default function Home() {
         </HeroSlideshow>
       </section>
 
-
-     {/* About Section */}
+      {/* About Section */}
       <section className="py-20 dark:bg-[#0a0a0a] bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -127,6 +135,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Services Section */}
       <section className="py-20 relative overflow-hidden dark:bg-black bg-white">
@@ -215,7 +224,7 @@ export default function Home() {
       <BlogSection blogs={blogData.blogs} />
 
       {/* Testimonials Section */}
-      <ScrollingTestimonials />
+      {/* <ScrollingTestimonials /> */}
 
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden dark:bg-black bg-gray-50">
@@ -255,27 +264,27 @@ const services = [
       "Complete range of school uniforms including shirts, trousers, skirts, and blazers with customizable designs and high-quality materials.",
     image: "/placeholder.jpg",
     icon: <GraduationCap className="w-5 h-5 text-white" />,
-    link: "/services#school",
+    link: "/products?category=School%20Uniforms",
   },
   {
     title: "Hospital Uniforms",
     description: "Professional medical uniforms including scrubs, lab coats, and nursing attire designed for comfort and functionality.",
     image: "/placeholder.jpg",
     icon: <Stethoscope className="w-5 h-5 text-white" />,
-    link: "/services#hospital",
+    link: "/products?category=Hospital%20Uniforms",
   },
   {
     title: "Hotel & Hospitality",
     description: "Elegant hospitality uniforms for hotels, restaurants, and service staff that combine style with durability.",
     image: "/placeholder.jpg",
     icon: <UtensilsCrossed className="w-5 h-5 text-white" />,
-    link: "/services#hospitality",
+    link: "/products?category=Hotel%20%26%20Hospitality",
   },
   {
     title: "Corporate Uniforms",
     description: "Professional corporate wear including formal shirts, trousers, and suits tailored to enhance your brand identity.",
     image: "/placeholder.jpg",
     icon: <Building2 className="w-5 h-5 text-white" />,
-    link: "/services#corporate",
+    link: "/products?category=Corporate%20Uniforms",
   },
 ]

@@ -1,10 +1,11 @@
 "use client"
 
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Search, Filter, Grid3X3, List, Star, ShoppingCart, Eye, ArrowRight } from 'lucide-react'
+import { Search, Filter, Grid3X3, List, Star, ShoppingCart, Eye, ArrowRight, Package, Users, Building2, Stethoscope, UtensilsCrossed, GraduationCap, X } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 import productData from '@/lib/product-data.json'
 
 const ProductsPage = () => {
@@ -15,44 +16,87 @@ const ProductsPage = () => {
   
   const titleRef = useRef<HTMLDivElement>(null)
   const isTitleInView = useInView(titleRef, { once: true })
+  const searchParams = useSearchParams()
 
   const { products, categories } = productData
+
+  // Handle URL category parameter
+  useEffect(() => {
+    const categoryParam = searchParams.get('category')
+    if (categoryParam) {
+      // Decode the category parameter and set it
+      const decodedCategory = decodeURIComponent(categoryParam)
+      setSelectedCategory(decodedCategory)
+    }
+  }, [searchParams])
+
+  // Calculate category counts
+  const categoryCountsMap = useMemo(() => {
+    const counts: { [key: string]: number } = {}
+    categories.forEach(category => {
+      counts[category.name] = products.filter(product => product.category === category.name).length
+    })
+    return counts
+  }, [products, categories])
+
+  // Get category icons
+  const getCategoryIcon = (categoryName: string) => {
+    switch (categoryName) {
+      case 'Corporate Uniforms':
+        return Building2
+      case 'Hospital Uniforms':
+        return Stethoscope
+      case 'Hotel & Hospitality':
+        return UtensilsCrossed
+      case 'School Uniforms':
+        return GraduationCap
+      default:
+        return Package
+    }
+  }
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
     let filtered = products.filter(product => {
-      const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           product.description.toLowerCase().includes(searchTerm.toLowerCase())
-      const matchesCategory = !selectedCategory || product.category === selectedCategory
+      // Normalize product properties to handle different property names
+      const productTitle = product.title || product.name || ''
+      const productDescription = product.description || ''
+      const productCategory = product.category || ''
+
+      const matchesSearch = productTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          productDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          productCategory.toLowerCase().includes(searchTerm.toLowerCase())
+      const matchesCategory = !selectedCategory || productCategory === selectedCategory
       return matchesSearch && matchesCategory
     })
 
     // Sort products
     switch (sortBy) {
       case 'featured':
-        return filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+        return filtered.sort((a, b) => ((b.featured ? 1 : 0) - (a.featured ? 1 : 0)))
       case 'price-low':
-        return filtered.sort((a, b) => parseInt(a.price.replace('₹', '').replace(',', '')) - parseInt(b.price.replace('₹', '').replace(',', '')))
+        return filtered.sort((a, b) => {
+          const priceA = parseInt((a.price || '0').replace('₹', '').replace(',', ''))
+          const priceB = parseInt((b.price || '0').replace('₹', '').replace(',', ''))
+          return priceA - priceB
+        })
       case 'price-high':
-        return filtered.sort((a, b) => parseInt(b.price.replace('₹', '').replace(',', '')) - parseInt(a.price.replace('₹', '').replace(',', '')))
+        return filtered.sort((a, b) => {
+          const priceA = parseInt((a.price || '0').replace('₹', '').replace(',', ''))
+          const priceB = parseInt((b.price || '0').replace('₹', '').replace(',', ''))
+          return priceB - priceA
+        })
       case 'name':
-        return filtered.sort((a, b) => a.title.localeCompare(b.title))
+        return filtered.sort((a, b) => (a.title || a.name || '').localeCompare(b.title || b.name || ''))
       default:
         return filtered
     }
   }, [products, searchTerm, selectedCategory, sortBy])
 
-  const stats = [
-    { label: 'Total Products', value: products.length },
-    { label: 'Categories', value: categories.length },
-    { label: 'Happy Clients', value: '500+' },
-    { label: 'Years Experience', value: '15+' }
-  ]
-
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 relative overflow-hidden dark:bg-black bg-white">
+      <section className="pt-32 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute top-[20%] left-[10%] w-32 h-32 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
           <div className="absolute bottom-[30%] right-[15%] w-40 h-40 rounded-full bg-orange-500 opacity-10 blur-3xl"></div>
@@ -61,7 +105,7 @@ const ProductsPage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div ref={titleRef} className="text-center">
             <motion.h1
-              className="text-5xl md:text-6xl font-bold mb-4 dark:text-white text-gray-900"
+              className="text-5xl md:text-6xl font-bold mb-4 text-gray-900"
               initial={{ opacity: 0, y: 20 }}
               animate={isTitleInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
@@ -70,7 +114,7 @@ const ProductsPage = () => {
             </motion.h1>
 
             <motion.div
-              className="flex items-center justify-center space-x-2 text-sm text-gray-400"
+              className="flex items-center justify-center space-x-2 text-sm text-gray-500"
               initial={{ opacity: 0 }}
               animate={isTitleInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -78,6 +122,12 @@ const ProductsPage = () => {
               <span>Home</span>
               <span>-</span>
               <span className="text-gradient">Products</span>
+              {selectedCategory && (
+                <>
+                  <span>-</span>
+                  <span className="text-gradient truncate max-w-32 sm:max-w-none">{selectedCategory}</span>
+                </>
+              )}
             </motion.div>
 
             <motion.div
@@ -90,158 +140,180 @@ const ProductsPage = () => {
         </div>
       </section>
 
-
-
       {/* Filters Section */}
-      <section className="py-8 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <section className="py-4 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-            {/* Search */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+          {/* Search */}
+          <div className="max-w-2xl mx-auto">
+            <div className="relative">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                <Search className="w-5 h-5" />
+              </div>
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder="Search for uniforms..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-[#192e42] focus:border-[#192e42] text-gray-900 dark:text-white"
+                className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-[#192e42] focus:border-[#192e42] text-gray-900 dark:text-white placeholder-gray-500"
               />
-            </div>
-
-            {/* Category Filter */}
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-[#192e42] text-gray-900 dark:text-white"
-            >
-              <option value="">All Categories</option>
-              {categories.map(category => (
-                <option key={category.id} value={category.name}>{category.name}</option>
-              ))}
-            </select>
-
-            {/* Sort */}
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-[#192e42] text-gray-900 dark:text-white"
-            >
-              <option value="featured">Featured</option>
-              <option value="name">Name A-Z</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-            </select>
-
-            {/* View Toggle */}
-            <div className="flex bg-white dark:bg-gray-700 rounded-xl border border-gray-300 dark:border-gray-600 p-1">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg transition-all ${viewMode === 'grid' 
-                  ? 'bg-[#192e42] text-white' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-[#192e42]'}`}
-              >
-                <Grid3X3 size={20} />
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg transition-all ${viewMode === 'list' 
-                  ? 'bg-[#192e42] text-white' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-[#192e42]'}`}
-              >
-                <List size={20} />
-              </button>
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  aria-label="Clear search"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          {filteredProducts.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">No products found</h3>
-              <p className="text-gray-600 dark:text-gray-300">Try adjusting your search criteria</p>
-            </div>
-          ) : (
-            <div className={viewMode === 'grid' 
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' 
-              : 'space-y-6'
-            }>
-              {filteredProducts.map((product, index) => (
-                <motion.div
-                  key={product.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:shadow-[#192e42]/20 transition-all duration-300 ${
-                    viewMode === 'list' ? 'flex items-center' : ''
+      {/* Category Pills */}
+      <section className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div className="container mx-auto px-0 md:px-4">
+          {/* Mobile Scroll Indicator */}
+          <div className="text-center text-xs text-gray-500 dark:text-gray-400 py-2 md:hidden">
+            ← Swipe to see more →
+          </div>
+          
+          <div className="scrollbar-hide horizontal-scroll category-scroll flex md:grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4 py-3 md:py-6 px-4 overflow-x-auto">
+            <button
+              onClick={() => setSelectedCategory('')}
+              className={`flex-none min-w-[120px] md:min-w-0 flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition-all ${
+                selectedCategory === ''
+                  ? 'bg-[#192e42] text-white shadow-sm ring-2 ring-[#192e42] ring-offset-2' 
+                  : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
+              }`}
+            >
+              <Package className="w-4 h-4 flex-shrink-0" />
+              <span className="text-sm font-medium">All Products</span>
+            </button>
+            
+            {categories.map((category) => {
+              const IconComponent = getCategoryIcon(category.name)
+              return (
+                <button
+                  key={category.name}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`flex-none min-w-[120px] md:min-w-0 flex items-center justify-center gap-2 px-3 py-2 rounded-lg transition-all ${
+                    selectedCategory === category.name
+                      ? 'bg-[#192e42] text-white shadow-sm ring-2 ring-[#192e42] ring-offset-2' 
+                      : 'bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
                   }`}
                 >
-                  <div className={`relative ${viewMode === 'list' ? 'w-48 h-32' : 'aspect-[4/3]'} overflow-hidden`}>
-                    <Image
-                      src={product.imageUrl}
-                      alt={product.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    {product.featured && (
-                      <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        Featured
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <IconComponent className="w-4 h-4 flex-shrink-0" />
+                  <span className="text-sm font-medium">{category.name}</span>
+                  <span className="text-xs opacity-75">({categoryCountsMap[category.name] || 0})</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Products Grid */}
+      <section className="py-6 md:py-8">
+        <div className="container mx-auto px-4">
+          {filteredProducts.length === 0 ? (
+            <div className="text-center py-12">
+              <Package className="mx-auto mb-3 text-gray-400 w-10 h-10" />
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                No products found
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                {searchTerm || selectedCategory 
+                  ? "Try adjusting your search or filters to find what you're looking for."
+                  : "We're working on adding more products to our catalog."}
+              </p>
+              {(searchTerm || selectedCategory) && (
+                <button
+                  onClick={() => {
+                    setSearchTerm('')
+                    setSelectedCategory('')
+                  }}
+                  className="inline-flex items-center px-4 py-2 bg-[#192e42] text-white text-sm font-medium rounded-lg hover:bg-[#1a3249] transition-colors"
+                >
+                  Clear filters
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className={`${
+              viewMode === 'grid' 
+                ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6' 
+                : 'space-y-4'
+            }`}>
+              {filteredProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className={`group ${
+                    viewMode === 'grid'
+                      ? 'bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow transition-all duration-200 overflow-hidden border border-gray-200 dark:border-gray-700'
+                      : 'bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow transition-all duration-200 overflow-hidden border border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row'
+                  }`}
+                >
+                  {/* Product Image */}
+                  <div className={`${
+                    viewMode === 'grid'
+                      ? 'aspect-[4/3] bg-gray-50 dark:bg-gray-700 relative'
+                      : 'aspect-[4/3] sm:w-48 bg-gray-50 dark:bg-gray-700 relative'
+                  }`}>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Image
+                        src={product.imageUrl || '/placeholder.jpg'}
+                        alt={product.title || product.name || 'Product Image'}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
 
-                  <div className={`p-6 ${viewMode === 'list' ? 'flex-1' : ''}`}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-[#192e42] dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-lg">
-                        {product.category}
-                      </span>
-                      {product.inStock && (
-                        <span className="text-xs text-green-600 dark:text-green-400 font-medium">In Stock</span>
-                      )}
-                    </div>
-
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2 group-hover:text-[#192e42] dark:group-hover:text-blue-400 transition-colors">
-                      {product.title}
-                    </h3>
-
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
-                      {product.excerpt}
-                    </p>
-
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold text-[#192e42] dark:text-blue-400">
+                  {/* Product Info */}
+                  <div className="p-4 flex flex-col flex-grow">
+                    <div className="flex-grow">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
+                        {product.title || product.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-2">
+                        {product.excerpt || product.description}
+                      </p>
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-lg font-medium text-gray-900 dark:text-white">
                           {product.price}
                         </span>
                         {product.originalPrice && (
-                          <span className="text-lg text-gray-400 line-through">
+                          <span className="text-sm text-gray-500 line-through">
                             {product.originalPrice}
                           </span>
                         )}
                       </div>
-                      <div className="flex items-center gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="flex items-center justify-between mt-4">
                       <Link
-                        href={`/products/${product.slug}`}
-                        className="flex-1 bg-gradient-to-r from-[#192e42] to-[#1a3249] text-white px-4 py-2 rounded-xl font-semibold hover:from-[#1a3249] hover:to-[#1b3651] transition-all duration-300 flex items-center justify-center gap-2 group"
+                        href={`/products/${product.slug || product.id}`}
+                        className="inline-flex items-center text-sm font-medium text-[#192e42] hover:text-[#1a3249] dark:text-blue-400 dark:hover:text-blue-300"
                       >
-                        <Eye size={18} />
                         View Details
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-4 h-4 ml-1" />
                       </Link>
+                      <div className="flex items-center gap-2">
+                        {product.featured && (
+                          <span className="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
+                            Featured
+                          </span>
+                        )}
+                        {product.inStock && (
+                          <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
+                            In Stock
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           )}

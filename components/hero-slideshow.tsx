@@ -1,72 +1,101 @@
 "use client"
 
-import type React from "react"
-
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 
 interface HeroSlideshowProps {
   images: string[]
   interval?: number
   children?: React.ReactNode
-  overlay?: boolean
 }
 
-export default function HeroSlideshow({ images, interval = 5000, children, overlay = true }: HeroSlideshowProps) {
+export default function HeroSlideshow({ images, interval = 5000, children }: HeroSlideshowProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
 
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+  }, [images.length])
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+  }, [images.length])
+
+  // Auto-play functionality
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+      handleNext()
     }, interval)
 
     return () => clearInterval(timer)
-  }, [images.length, interval])
+  }, [handleNext, interval])
+
+  // Swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.touches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      handleNext()
+    } else if (isRightSwipe) {
+      handlePrev()
+    }
+
+    setTouchStart(0)
+    setTouchEnd(0)
+  }
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden bg-gray-900">
-      <AnimatePresence initial={false}>
+    <div 
+      className="relative w-full h-full overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Previous Image (for crossfade) */}
+      <div className="absolute inset-0">
+        <Image
+          src={images[(currentIndex - 1 + images.length) % images.length]}
+          alt="Previous slide"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+
+      {/* Current Image */}
         <motion.div
           key={currentIndex}
-          className="absolute inset-0 w-full h-full z-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
-          style={{
-            backgroundImage: `url(${images[currentIndex] || "/placeholder.svg"})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: '#1f2937'
-          }}
-        />
-      </AnimatePresence>
-
-      {overlay && (
-        <div 
-          className="absolute inset-0 z-10" 
-          style={{
-            background: 'rgba(0, 0, 0, 0.6)',
-            backdropFilter: 'brightness(0.8)'
-          }}
-        />
-      )}
+        transition={{ duration: 1.2, ease: "easeInOut" }}
+        className="absolute inset-0"
+        >
+          <Image
+          src={images[currentIndex]}
+          alt={`Slide ${currentIndex + 1}`}
+            fill
+            priority
+          className="object-cover"
+          />
+        <div className="absolute inset-0 bg-black/40" />
+        </motion.div>
 
       <div className="relative z-20 w-full h-full">{children}</div>
-
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-white w-4" : "bg-white/50"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
   )
 }

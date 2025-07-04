@@ -6,9 +6,38 @@ import Link from 'next/link'
 import Image from 'next/image'
 import productData from '@/lib/product-data.json'
 
+interface Product {
+  id: string | number;
+  name?: string;
+  title?: string;
+  category: string;
+  price: string;
+  originalPrice?: string;
+  description?: string;
+  excerpt?: string;
+  imageUrl: string;
+  inStock?: boolean;
+  featured?: boolean;
+  slug?: string;
+}
+
 const ProductsSection = () => {
-  const { products, categories } = productData
-  const featuredProducts = products.filter(product => product.featured).slice(0, 6)
+  const defaultImage = "/placeholder.svg"
+  
+  const featuredProducts = productData.products
+    .filter((product: Product) => product.featured)
+    .slice(0, 3)
+    .map((product: Product) => ({
+      id: product.id,
+      name: product.name || product.title || "",
+      category: product.category,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      description: product.description || product.excerpt || "",
+      imageUrl: product.imageUrl || defaultImage,
+      inStock: product.inStock ?? true,
+      slug: product.slug || product.id.toString()
+    }));
 
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
@@ -65,7 +94,7 @@ const ProductsSection = () => {
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={product.imageUrl}
-                    alt={product.title}
+                    alt={product.name}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -100,11 +129,11 @@ const ProductsSection = () => {
                   </div>
 
                   <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2 group-hover:text-[#192e42] dark:group-hover:text-blue-400 transition-colors line-clamp-1">
-                    {product.title}
+                    {product.name}
                   </h3>
 
                   <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 leading-relaxed">
-                    {product.excerpt}
+                    {product.description}
                   </p>
 
                   <div className="flex items-center justify-between mb-4">
@@ -127,12 +156,9 @@ const ProductsSection = () => {
 
                   <Link
                     href={`/products/${product.slug}`}
-                    className="block w-full bg-gradient-to-r from-[#192e42] to-[#1a3249] text-white text-center py-3 rounded-xl font-semibold hover:from-[#1a3249] hover:to-[#1b3651] transition-all duration-300 transform hover:scale-105 group/btn"
+                    className="mt-4 w-full inline-flex items-center justify-center bg-white/90 text-[#192e42] px-6 py-3 rounded-xl font-medium hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm border border-gray-100"
                   >
-                    <span className="flex items-center justify-center gap-2">
-                      View Details
-                      <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </span>
+                    View Details <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </div>
               </div>
@@ -144,18 +170,17 @@ const ProductsSection = () => {
 
         {/* Call to Action */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
           className="text-center"
         >
           <Link
             href="/products"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#192e42] to-[#1a3249] text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:from-[#1a3249] hover:to-[#1b3651] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group"
+            className="inline-flex items-center justify-center bg-white/90 text-[#192e42] px-8 py-4 rounded-full text-lg font-medium hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm border border-gray-100"
           >
-            View All Products
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            View All Products <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </motion.div>
       </div>

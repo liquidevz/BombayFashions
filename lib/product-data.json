@@ -1,10 +1,23 @@
 {
   "products": [
     {
+      "id": "1",
+      "name": "Corporate Uniform Set",
+      "category": "Corporate Uniforms",
+      "price": "₹2,999",
+      "description": "Professional corporate uniform set including blazer and trousers.",
+      "imageUrl": "/images/uniforms/corporate-1.jpg",
+      "gallery": [
+        "/images/uniforms/corporate-1.jpg",
+        "/images/uniforms/corporate-2.jpg",
+        "/images/uniforms/corporate-3.jpg"
+      ]
+    },
+    {
       "id": 1,
       "slug": "white-pc-shirts",
       "title": "White PC Shirts",
-      "category": "Corporate Wear",
+      "category": "Corporate Uniforms",
       "price": "₹899",
       "originalPrice": "₹1,299",
       "excerpt": "Premium white polycotton shirts perfect for corporate and formal wear. Made with high-quality fabric for durability and comfort.",
@@ -26,7 +39,7 @@
       "id": 2,
       "slug": "pv-trousers",
       "title": "PV Trousers",
-      "category": "Corporate Wear",
+      "category": "Corporate Uniforms",
       "price": "₹1,299",
       "originalPrice": "₹1,899",
       "excerpt": "High-quality polyester-viscose trousers offering excellent fit and durability for professional and school uniforms.",
@@ -48,7 +61,7 @@
       "id": 3,
       "slug": "scrub-suits",
       "title": "Medical Scrub Suits",
-      "category": "Healthcare",
+      "category": "Hospital Uniforms",
       "price": "₹1,599",
       "originalPrice": "₹2,199",
       "excerpt": "Professional medical scrub suits designed for healthcare professionals, offering comfort, durability, and easy maintenance.",
@@ -70,7 +83,7 @@
       "id": 4,
       "slug": "chef-coats",
       "title": "Professional Chef Coats",
-      "category": "Hospitality",
+      "category": "Hotel & Hospitality",
       "price": "₹1,799",
       "originalPrice": "₹2,499",
       "excerpt": "Premium chef coats designed for professional kitchens, featuring stain resistance and comfort for long working hours.",
@@ -92,7 +105,7 @@
       "id": 5,
       "slug": "school-uniforms",
       "title": "Complete School Uniforms",
-      "category": "Education",
+      "category": "School Uniforms",
       "price": "₹2,499",
       "originalPrice": "₹3,499",
       "excerpt": "Complete school uniform sets including shirts, trousers, and accessories. Designed for comfort and durability for growing students.",
@@ -114,7 +127,7 @@
       "id": 6,
       "slug": "hospitality-uniforms",
       "title": "Hospitality Staff Uniforms",
-      "category": "Hospitality",
+      "category": "Hotel & Hospitality",
       "price": "₹1,999",
       "originalPrice": "₹2,799",
       "excerpt": "Professional uniforms for hotels, restaurants, and hospitality industry. Combines elegance with functionality for service excellence.",
@@ -131,31 +144,163 @@
       "gallery": ["/images/video.png", "/images/founder.png", "/images/studio1.png"],
       "inStock": true,
       "featured": false
+    },
+    {
+      "id": 7,
+      "slug": "corporate-blazers",
+      "title": "Executive Blazers",
+      "category": "Corporate Uniforms",
+      "price": "₹3,999",
+      "originalPrice": "₹5,499",
+      "excerpt": "Premium executive blazers for corporate professionals. Tailored for comfort and sophistication in business environments.",
+      "description": "Our Executive Blazers represent the pinnacle of corporate fashion, combining traditional tailoring with modern comfort. Perfect for executives, managers, and professionals who demand excellence in their attire.",
+      "features": [
+        "Premium wool blend",
+        "Professional tailoring",
+        "Moisture-wicking lining",
+        "Multiple color options",
+        "Custom fitting available",
+        "Reinforced construction"
+      ],
+      "imageUrl": "/images/hero-3.png",
+      "gallery": ["/images/hero-3.png", "/images/studio1.png", "/images/founder.png"],
+      "inStock": true,
+      "featured": true
+    },
+    {
+      "id": 8,
+      "slug": "nursing-scrubs",
+      "title": "Nursing Scrub Sets",
+      "category": "Hospital Uniforms",
+      "price": "₹1,399",
+      "originalPrice": "₹1,899",
+      "excerpt": "Comfortable and durable nursing scrubs designed specifically for long shifts and demanding healthcare environments.",
+      "description": "Our Nursing Scrub Sets are designed with input from healthcare professionals to ensure maximum comfort and functionality during long shifts.",
+      "features": [
+        "Antimicrobial fabric",
+        "Moisture-wicking technology",
+        "Multiple functional pockets",
+        "Easy-care maintenance",
+        "Comfortable stretch fabric",
+        "Professional colors"
+      ],
+      "imageUrl": "/images/studio5.png",
+      "gallery": ["/images/studio5.png", "/images/studio4.png", "/images/recording.png"],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 9,
+      "slug": "school-polo-shirts",
+      "title": "School Polo Shirts",
+      "category": "School Uniforms",
+      "price": "₹699",
+      "originalPrice": "₹999",
+      "excerpt": "High-quality polo shirts for school uniforms. Available in multiple colors with embroidery options for school logos.",
+      "description": "Our School Polo Shirts offer the perfect combination of comfort and durability for daily school wear. Made from premium cotton blend fabric.",
+      "features": [
+        "Premium cotton blend",
+        "Colorfast guarantee",
+        "Logo embroidery available",
+        "Multiple size options",
+        "Easy-care fabric",
+        "Reinforced collar"
+      ],
+      "imageUrl": "/images/studio8.png",
+      "gallery": ["/images/studio8.png", "/images/hero-2.png", "/images/equipment.png"],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 10,
+      "slug": "restaurant-aprons",
+      "title": "Professional Restaurant Aprons",
+      "category": "Hotel & Hospitality",
+      "price": "₹899",
+      "originalPrice": "₹1,299",
+      "excerpt": "Durable and stylish aprons for restaurant staff. Features stain-resistant fabric and adjustable straps for all-day comfort.",
+      "description": "Our Professional Restaurant Aprons are designed to protect uniforms while maintaining a professional appearance in food service environments.",
+      "features": [
+        "Stain-resistant coating",
+        "Adjustable neck and waist straps",
+        "Large front pockets",
+        "Easy-clean fabric",
+        "Reinforced stress points",
+        "Multiple color options"
+      ],
+      "imageUrl": "/images/studio7.png",
+      "gallery": ["/images/studio7.png", "/images/studio6.png", "/images/teaching.png"],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 11,
+      "slug": "lab-coats",
+      "title": "Laboratory Coats",
+      "category": "Hospital Uniforms",
+      "price": "₹1,899",
+      "originalPrice": "₹2,599",
+      "excerpt": "Professional laboratory coats for medical and research professionals. Features chemical-resistant fabric and functional design.",
+      "description": "Our Laboratory Coats provide essential protection for medical and research professionals working in laboratory environments.",
+      "features": [
+        "Chemical-resistant fabric",
+        "Multiple functional pockets",
+        "Easy-clean surface",
+        "Professional white finish",
+        "Reinforced seams",
+        "Comfortable fit"
+      ],
+      "imageUrl": "/images/recording.png",
+      "gallery": ["/images/recording.png", "/images/studio4.png", "/images/studio5.png"],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 12,
+      "slug": "security-uniforms",
+      "title": "Security Guard Uniforms",
+      "category": "Corporate Uniforms",
+      "price": "₹2,299",
+      "originalPrice": "₹3,199",
+      "excerpt": "Professional security uniforms designed for durability and comfort. Includes shirts, trousers, and optional accessories.",
+      "description": "Our Security Guard Uniforms are built to withstand the demands of security work while maintaining a professional and authoritative appearance.",
+      "features": [
+        "Durable fabric construction",
+        "Reinforced stress points",
+        "Multiple utility pockets",
+        "Badge and patch ready",
+        "Comfortable all-day wear",
+        "Professional appearance"
+      ],
+      "imageUrl": "/images/studio3.png",
+      "gallery": ["/images/studio3.png", "/images/studio2.png", "/images/hero-3.png"],
+      "inStock": true,
+      "featured": false
     }
   ],
   "categories": [
     {
       "id": 1,
-      "name": "Corporate Wear",
-      "slug": "corporate-wear",
+      "name": "Corporate Uniforms",
+      "slug": "corporate-uniforms",
       "description": "Professional corporate uniforms and formal wear"
     },
     {
       "id": 2,
-      "name": "Healthcare",
-      "slug": "healthcare",
+      "name": "Hospital Uniforms",
+      "slug": "hospital-uniforms",
       "description": "Medical scrubs and healthcare professional uniforms"
     },
     {
       "id": 3,
-      "name": "Hospitality",
-      "slug": "hospitality",
+      "name": "Hotel & Hospitality",
+      "slug": "hotel-hospitality",
       "description": "Restaurant, hotel, and hospitality staff uniforms"
     },
     {
       "id": 4,
-      "name": "Education",
-      "slug": "education",
+      "name": "School Uniforms",
+      "slug": "school-uniforms",
       "description": "School uniforms and educational institution wear"
     }
   ]
