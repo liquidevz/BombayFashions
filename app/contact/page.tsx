@@ -3,6 +3,8 @@
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Building2, Mail, Phone, MapPin, Loader2, Check, Clock } from "lucide-react"
+import BookingForm from "@/components/booking-form"
+import SuspenseWrapper from "@/components/providers/suspense-wrapper"
 
 const categories = [
   "Corporate Uniforms",
@@ -26,6 +28,14 @@ const quantityRanges = [
 ]
 
 export default function Contact() {
+  return (
+    <SuspenseWrapper>
+      <ContactContent />
+    </SuspenseWrapper>
+  )
+}
+
+function ContactContent() {
   const titleRef = useRef<HTMLDivElement>(null)
   const isTitleInView = useInView(titleRef, { once: true })
   

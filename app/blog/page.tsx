@@ -6,8 +6,17 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Calendar, User, Search, Filter, Clock, Tag } from "lucide-react"
 import blogData from "@/lib/blog-data.json"
+import SuspenseWrapper from "@/components/providers/suspense-wrapper"
 
 export default function BlogPage() {
+  return (
+    <SuspenseWrapper>
+      <BlogContent />
+    </SuspenseWrapper>
+  )
+}
+
+function BlogContent() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("")
   

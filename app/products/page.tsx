@@ -7,8 +7,32 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import productData from '@/lib/product-data.json'
+import SuspenseWrapper from '@/components/providers/suspense-wrapper'
 
-const ProductsPage = () => {
+function SearchParamsHandler({ onCategoryChange }: { onCategoryChange: (category: string) => void }) {
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const categoryParam = searchParams.get('category')
+    if (categoryParam) {
+      // Decode the category parameter and set it
+      const decodedCategory = decodeURIComponent(categoryParam)
+      onCategoryChange(decodedCategory)
+    }
+  }, [searchParams, onCategoryChange])
+
+  return null
+}
+
+export default function ProductsPage() {
+  return (
+    <SuspenseWrapper>
+      <ProductsContent />
+    </SuspenseWrapper>
+  )
+}
+
+function ProductsContent() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
@@ -16,19 +40,8 @@ const ProductsPage = () => {
   
   const titleRef = useRef<HTMLDivElement>(null)
   const isTitleInView = useInView(titleRef, { once: true })
-  const searchParams = useSearchParams()
 
   const { products, categories } = productData
-
-  // Handle URL category parameter
-  useEffect(() => {
-    const categoryParam = searchParams.get('category')
-    if (categoryParam) {
-      // Decode the category parameter and set it
-      const decodedCategory = decodeURIComponent(categoryParam)
-      setSelectedCategory(decodedCategory)
-    }
-  }, [searchParams])
 
   // Calculate category counts
   const categoryCountsMap = useMemo(() => {
@@ -95,6 +108,10 @@ const ProductsPage = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <SuspenseWrapper>
+        <SearchParamsHandler onCategoryChange={setSelectedCategory} />
+      </SuspenseWrapper>
+
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -321,6 +338,4 @@ const ProductsPage = () => {
       </section>
     </div>
   )
-}
-
-export default ProductsPage 
+} 

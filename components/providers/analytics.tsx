@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import Script from "next/script"
 import { usePathname, useSearchParams } from "next/navigation"
+import SuspenseWrapper from "./suspense-wrapper"
 
 // Define window.gtag
 declare global {
@@ -19,6 +20,14 @@ declare global {
 }
 
 export function Analytics() {
+  return (
+    <SuspenseWrapper>
+      <AnalyticsContent />
+    </SuspenseWrapper>
+  )
+}
+
+function AnalyticsContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 

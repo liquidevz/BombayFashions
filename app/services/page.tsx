@@ -2,8 +2,8 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-
 import { Scissors, Shirt, Shield, Package, Palette, Users } from "lucide-react"
+import SuspenseWrapper from "@/components/providers/suspense-wrapper"
 
 const services = [
   {
@@ -45,6 +45,14 @@ const services = [
 ]
 
 export default function Services() {
+  return (
+    <SuspenseWrapper>
+      <ServicesContent />
+    </SuspenseWrapper>
+  )
+}
+
+function ServicesContent() {
   const titleRef = useRef<HTMLDivElement>(null)
   const isTitleInView = useInView(titleRef, { once: true })
 

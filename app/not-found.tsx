@@ -1,12 +1,21 @@
 "use client"
 
-import { Suspense } from 'react'
-import Link from 'next/link'
+import Link from "next/link"
+import { motion } from "framer-motion"
+import SuspenseWrapper from "@/components/providers/suspense-wrapper"
 import { ArrowLeft } from 'lucide-react'
+
+export default function NotFound() {
+  return (
+    <SuspenseWrapper>
+      <NotFoundContent />
+    </SuspenseWrapper>
+  )
+}
 
 function NotFoundContent() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
+    <main className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
       <div className="container px-4 mx-auto">
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-8">404</h1>
@@ -26,13 +35,5 @@ function NotFoundContent() {
         </div>
       </div>
     </main>
-  )
-}
-
-export default function NotFound() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <NotFoundContent />
-    </Suspense>
   )
 } 

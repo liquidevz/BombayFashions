@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Scissors, Shirt, Shield, Package, GraduationCap, Stethoscope, UtensilsCrossed, Building2 } from "lucide-react"
-import Footer from "@/components/footer"
+// import Footer from "@/components/footer"
 
 import ScrollingTestimonials from "@/components/scrolling-testimonials"
 import HeroSlideshow from "@/components/hero-slideshow"
@@ -13,10 +13,19 @@ import LogoMarquee from "@/components/logo-marquee"
 import WhyUsSection from "@/components/why-us-section"
 import BlogSection from "@/components/blog-section"
 import ProductsSection from "@/components/sections/products-section"
+import SuspenseWrapper from "@/components/providers/suspense-wrapper"
 // Import blog data
 import blogData from "@/lib/blog-data.json"
 
 export default function Home() {
+  return (
+    <SuspenseWrapper>
+      <HomeContent />
+    </SuspenseWrapper>
+  )
+}
+
+function HomeContent() {
   const servicesRef = useRef<HTMLDivElement>(null)
   const isServicesInView = useInView(servicesRef, { once: true, amount: 0.2 })
 
