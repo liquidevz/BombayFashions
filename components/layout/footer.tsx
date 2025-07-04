@@ -6,135 +6,155 @@ import {
   Facebook,
   Instagram,
   Twitter,
-  Youtube,
-  Mail,
   Phone,
   MapPin,
-  Home,
-  Music2,
-  Headphones,
-  Mic2,
-  BookOpen,
-  User,
+  Mail,
 } from "lucide-react"
-import { SocialIcon } from "../ui/social-icon"
+import GoogleMapComponent from "../ui/google-map"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
+  const SectionTitle = ({ children }: { children: React.ReactNode }) => (
+    <h3 className="font-seasons text-xl mb-4 pb-2 border-b border-yellow-500/30 tracking-wide">
+      {children}
+    </h3>
+  )
+
   return (
-    <footer className="relative bg-[#192e42] dark:bg-[#192e42] pt-16 overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute bottom-[20%] left-[10%] w-32 h-32 rounded-full bg-purple-500 opacity-10 blur-3xl"></div>
-        <div className="absolute top-[30%] right-[15%] w-40 h-40 rounded-full bg-orange-500 opacity-10 blur-3xl"></div>
-      </div>
+    <footer className="relative bg-[#111827] text-white">
+      {/* Decorative gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-black/20 pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {/* Brand Column */}
+      {/* Main footer content */}
+      <div className="relative container mx-auto px-4 pt-12 pb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Our Services Column */}
           <div>
-            <Link href="/" className="flex items-center group mb-6">
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                <h2 className="text-xl font-bold text-white">
-                  BOMBAYFASHIONS
-                </h2>
-              </motion.div>
-            </Link>
-            <p className="mt-4 text-sm text-gray-300 max-w-xs">
-              Your trusted partner for high-quality uniforms. Serving businesses, schools, and healthcare institutions since 2008.
-            </p>
-            <div className="flex space-x-4">
-              <SocialIcon icon={<Facebook size={18} />} />
-              <SocialIcon icon={<Instagram size={18} />} />
-              <SocialIcon icon={<Twitter size={18} />} />
-              <SocialIcon icon={<Youtube size={18} />} />
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="h-full"
+            >
+              <SectionTitle>OUR SERVICES</SectionTitle>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                BombayFashions have ventured into the Uniforms and Commercial shops in Mumbai. We are experts in
+                Public School Uniforms, Colleges, Hospitals, Hotels as well as corporate uniform business.
+              </p>
+            </motion.div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links Column */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-300 hover:text-white transition">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="text-gray-300 hover:text-white transition">
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-gray-300 hover:text-white transition">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-300 hover:text-white transition">
-                  Contact
-                </Link>
-              </li>
-            </ul>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="h-full flex flex-col"
+            >
+              <SectionTitle>QUICK LINKS</SectionTitle>
+              <ul className="space-y-2 text-sm mb-4">
+                {[
+                  { href: "/", text: "HOME" },
+                  { href: "/about", text: "ABOUT US" },
+                  { href: "/products", text: "PRODUCTS" },
+                  { href: "/contact", text: "CONTACT" },
+                  { href: "/blog", text: "BLOG" },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link 
+                      href={link.href} 
+                      className="text-gray-300 hover:text-yellow-500 transition-colors duration-200 flex items-center group"
+                    >
+                      <span className="w-0 group-hover:w-2 h-0.5 bg-yellow-500 mr-0 group-hover:mr-2 transition-all duration-200" />
+                      {link.text}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Social Links */}
+              <div className="mt-auto">
+                <div className="flex space-x-4">
+                  {[
+                    { Icon: Facebook, href: "https://facebook.com" },
+                    { Icon: Instagram, href: "https://instagram.com" },
+                    { Icon: Twitter, href: "https://twitter.com" },
+                  ].map(({ Icon, href }) => (
+                    <Link 
+                      key={href}
+                      href={href} 
+                      className="text-gray-400 hover:text-yellow-500 transition-colors duration-200"
+                    >
+                      <Icon size={18} />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Contact Info */}
+          {/* Location Map Column */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <SectionTitle>LOCATION</SectionTitle>
+              <div className="w-full h-[180px] sm:h-[200px] rounded-lg overflow-hidden shadow-lg shadow-black/20 border border-gray-800">
+                <GoogleMapComponent />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Address Column */}
           <div>
-            <h3 className="text-lg font-bold mb-6 relative inline-block">
-              <span className="text-white">Contact Us</span>
-              <div className="h-1 w-full bg-yellow-300 mt-1"></div>
-            </h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="w-5 h-5 text-yellow-300 mr-3 mt-1 shrink-0" />
-                <span className="text-gray-300">
-                  123 Fashion Avenue, Mumbai, Maharashtra 400001, India
-                </span>
-              </li>
-              <li className="flex items-center">
-                <Phone className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
-                <a
-                  href="tel:+919876543210"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  +91 98765 43210
-                </a>
-              </li>
-              <li className="flex items-center">
-                <Mail className="w-5 h-5 text-yellow-300 mr-3 shrink-0" />
-                <a
-                  href="mailto:info@bombayfashions.com"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  info@bombayfashions.com
-                </a>
-              </li>
-            </ul>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <SectionTitle>ADDRESS</SectionTitle>
+              <div className="space-y-4 text-sm">
+                <div className="text-gray-300 space-y-1">
+                  <p className="text-white">BombayFashions</p>
+                  <p>1, BombayFashions Street,</p>
+                  <p>1st Street Nadar Colony,</p>
+                  <p>Nanjundapuram Road, Mumbai</p>
+                  <p>Maharashtra - 641023, India</p>
+                </div>
+
+                <div className="space-y-2">
+                  {[
+                    { icon: <Phone size={14} />, href: "tel:+919916930444", text: "+91 9916930444" },
+                    { icon: <Phone size={14} />, href: "tel:+919844120777", text: "+91 9844120777" },
+                    { icon: <Mail size={14} />, href: "mailto:uniforms@bombayfashions.in", text: "uniforms@bombayfashions.in" },
+                  ].map((contact, index) => (
+                    <div key={index} className="flex items-center text-gray-300 group">
+                      <span className="text-yellow-500/70 mr-2">{contact.icon}</span>
+                      <a href={contact.href} className="hover:text-yellow-500 transition-colors duration-200 text-xs sm:text-sm">
+                        {contact.text}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-600 py-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {currentYear} BombayFashions. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <Link href="/privacy" className="text-gray-300 text-sm hover:text-white">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-gray-300 text-sm hover:text-white">
-              Terms of Service
-            </Link>
-            <Link href="/contact" className="text-gray-300 text-sm hover:text-white">
-              Contact
-            </Link>
-          </div>
+        {/* Copyright Bar */}
+        <div className="mt-8 pt-4 border-t border-gray-800/50">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-center text-xs sm:text-sm text-gray-400"
+          >
+            <p>Copyright © BombayFashions, {currentYear}. All rights reserved.</p>
+          </motion.div>
         </div>
       </div>
     </footer>

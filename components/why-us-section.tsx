@@ -138,7 +138,7 @@ export default function WhyUsSection() {
               className={`${feature.bgColor} rounded-2xl p-6 md:p-8`}
             >
               <feature.icon />
-              <h3 className="text-xl font-bold text-[#192e42] mb-3 mt-4">{feature.title}</h3>
+              <h3 className="text-xl text-[#192e42] mb-3 mt-4">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </motion.div>
           ))}

@@ -18,7 +18,7 @@ function NotFoundContent() {
     <main className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
       <div className="container px-4 mx-auto">
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-8">404</h1>
+          <h1 className="text-6xl text-gray-900 dark:text-white mb-8">404</h1>
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
             Page Not Found
           </h2>

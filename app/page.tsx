@@ -50,7 +50,7 @@ function HomeContent() {
         <HeroSlideshow images={heroImages}>
           <div className="container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
             <motion.h1
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white dark:text-white mb-6"
+              className="text-4xl md:text-6xl lg:text-7xl text-white dark:text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -101,7 +101,7 @@ function HomeContent() {
                 animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <h2 className="text-3xl md:text-4xl mb-6">
                   About <span className="text-gradient">Bombay Fashions</span>
                 </h2>
                 <div className="h-1 w-20 bg-gradient mb-6"></div>
@@ -137,7 +137,7 @@ function HomeContent() {
                 <p className="text-white font-medium !text-white">
                   "Our mission is to create uniforms that empower professionals to perform at their best."
                 </p>
-                <p className="text-white text-sm mt-2 !text-white">- Raj Kapoor, Founder</p>
+                <p className="text-white text-sm mt-2 !text-white">- Partap Kukreja, Founder</p>
               </div>
             </motion.div>
           </div>
@@ -154,7 +154,7 @@ function HomeContent() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white text-gray-900">
+            <h2 className="text-3xl md:text-4xl mb-4 dark:text-white text-gray-900">
               Our <span className="text-gradient">Uniform Categories</span>
             </h2>
             <div className="h-1 w-20 bg-gradient mx-auto mb-6"></div>
@@ -240,7 +240,7 @@ function HomeContent() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white text-gray-900">
+            <h2 className="text-3xl md:text-4xl mb-6 dark:text-white text-gray-900">
               Ready to <span className="text-gradient">Get Started</span>?
             </h2>
             <p className="dark:text-gray-300 text-gray-700 mb-8">

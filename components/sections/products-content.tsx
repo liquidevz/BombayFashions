@@ -7,7 +7,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import productData from '@/lib/product-data.json'
-import SuspenseWrapper from '@/components/providers/suspense-wrapper'
 
 function SearchParamsHandler({ onCategoryChange }: { onCategoryChange: (category: string) => void }) {
   const searchParams = useSearchParams()
@@ -24,15 +23,7 @@ function SearchParamsHandler({ onCategoryChange }: { onCategoryChange: (category
   return null
 }
 
-export default function ProductsPage() {
-  return (
-    <SuspenseWrapper>
-      <ProductsContent />
-    </SuspenseWrapper>
-  )
-}
-
-function ProductsContent() {
+export default function ProductsContent() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
@@ -108,9 +99,7 @@ function ProductsContent() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      <SuspenseWrapper>
-        <SearchParamsHandler onCategoryChange={setSelectedCategory} />
-      </SuspenseWrapper>
+      <SearchParamsHandler onCategoryChange={setSelectedCategory} />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">
@@ -233,107 +222,76 @@ function ProductsContent() {
       {/* Products Grid */}
       <section className="py-6 md:py-8">
         <div className="container mx-auto px-4">
-          {filteredProducts.length === 0 ? (
-            <div className="text-center py-12">
-              <Package className="mx-auto mb-3 text-gray-400 w-10 h-10" />
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                No products found
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                {searchTerm || selectedCategory 
-                  ? "Try adjusting your search or filters to find what you're looking for."
-                  : "We're working on adding more products to our catalog."}
-              </p>
-              {(searchTerm || selectedCategory) && (
-                <button
-                  onClick={() => {
-                    setSearchTerm('')
-                    setSelectedCategory('')
-                  }}
-                  className="inline-flex items-center px-4 py-2 bg-[#192e42] text-white text-sm font-medium rounded-lg hover:bg-[#1a3249] transition-colors"
-                >
-                  Clear filters
-                </button>
-              )}
-            </div>
-          ) : (
-            <div className={`${
-              viewMode === 'grid' 
-                ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6' 
-                : 'space-y-4'
-            }`}>
-              {filteredProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className={`group ${
-                    viewMode === 'grid'
-                      ? 'bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow transition-all duration-200 overflow-hidden border border-gray-200 dark:border-gray-700'
-                      : 'bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow transition-all duration-200 overflow-hidden border border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row'
-                  }`}
-                >
-                  {/* Product Image */}
-                  <div className={`${
-                    viewMode === 'grid'
-                      ? 'aspect-[4/3] bg-gray-50 dark:bg-gray-700 relative'
-                      : 'aspect-[4/3] sm:w-48 bg-gray-50 dark:bg-gray-700 relative'
-                  }`}>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Image
-                        src={product.imageUrl || '/placeholder.jpg'}
-                        alt={product.title || product.name || 'Product Image'}
-                        fill
-                        className="object-cover"
-                      />
+          {/* Products Grid */}
+          <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'} gap-6`}>
+            {filteredProducts.map((product) => (
+              <Link
+                key={product.id}
+                href={`/products/${product.slug || product.id}`}
+                className={`group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden ${
+                  viewMode === 'list' ? 'flex gap-6' : ''
+                }`}
+              >
+                {/* Product Image */}
+                <div className={`relative ${viewMode === 'list' ? 'w-48 flex-shrink-0' : 'w-full'} aspect-square overflow-hidden`}>
+                  <Image
+                    src={product.imageUrl}
+                    alt={product.title || product.name || 'Product Image'}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {product.featured && (
+                    <div className="absolute top-2 left-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                      <Star className="w-3 h-3" />
+                      <span>Featured</span>
                     </div>
-                  </div>
+                  )}
+                </div>
 
-                  {/* Product Info */}
-                  <div className="p-4 flex flex-col flex-grow">
-                    <div className="flex-grow">
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
-                        {product.title || product.name}
-                      </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-2">
-                        {product.excerpt || product.description}
-                      </p>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-lg font-medium text-gray-900 dark:text-white">
-                          {product.price}
+                {/* Product Info */}
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    {product.title || product.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 line-clamp-2">
+                    {product.description || product.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="text-[#192e42] font-semibold">
+                      {product.price}
+                      {product.originalPrice && (
+                        <span className="text-sm text-gray-400 line-through ml-2">
+                          {product.originalPrice}
                         </span>
-                        {product.originalPrice && (
-                          <span className="text-sm text-gray-500 line-through">
-                            {product.originalPrice}
-                          </span>
-                        )}
-                      </div>
+                      )}
                     </div>
-
-                    <div className="flex items-center justify-between mt-4">
-                      <Link
-                        href={`/products/${product.slug || product.id}`}
-                        className="inline-flex items-center text-sm font-medium text-[#192e42] hover:text-[#1a3249] dark:text-blue-400 dark:hover:text-blue-300"
-                      >
-                        View Details
-                        <ArrowRight className="w-4 h-4 ml-1" />
-                      </Link>
-                      <div className="flex items-center gap-2">
-                        {product.featured && (
-                          <span className="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
-                            Featured
-                          </span>
-                        )}
-                        {product.inStock && (
-                          <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                            In Stock
-                          </span>
-                        )}
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <span className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        {product.inStock ? 'In Stock' : 'Out of Stock'}
+                      </span>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
+
+                {/* Quick Actions */}
+                <div className="absolute top-2 right-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button
+                    className="p-2 bg-white dark:bg-gray-700 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="Quick view"
+                  >
+                    <Eye className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                  </button>
+                  <button
+                    className="p-2 bg-white dark:bg-gray-700 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="Add to cart"
+                  >
+                    <ShoppingCart className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                  </button>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </div>

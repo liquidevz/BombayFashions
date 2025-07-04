@@ -65,7 +65,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-              <h1 className="text-xl font-bold relative">
+              <h1 className="text-xl relative">
                 <span className="text-gradient">BOMBAYFASHIONS</span>
               </h1>
             </motion.div>

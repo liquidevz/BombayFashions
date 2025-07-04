@@ -14,7 +14,7 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
   return (
     <div className="w-full py-12 overflow-hidden bg-gray-50 dark:bg-[#0a0a0a]">
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <h2 className="text-3xl md:text-4xl mb-4">
           Our <span className="text-gradient">Partners</span>
         </h2>
         <div className="h-1 w-20 bg-gradient mx-auto"></div>

@@ -5,13 +5,86 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 
 const containerStyle = {
   width: '100%',
-  height: '300px'
+  height: '100%'
 }
 
 const center = {
-  lat: 19.1136,  // Andheri East coordinates
-  lng: 72.8697
+  lat: 11.0168,  // Nanjundapuram Road, Coimbatore coordinates
+  lng: 76.9558
 }
+
+const mapStyles = [
+  {
+    featureType: "all",
+    elementType: "labels.text.fill",
+    stylers: [{ color: "#9ca3af" }]  // Lighter gray for better readability
+  },
+  {
+    featureType: "all",
+    elementType: "labels.text.stroke",
+    stylers: [{ color: "#111827" }, { weight: 2 }]  // Matching footer background
+  },
+  {
+    featureType: "all",
+    elementType: "labels.icon",
+    stylers: [{ visibility: "off" }]
+  },
+  {
+    featureType: "administrative",
+    elementType: "geometry.fill",
+    stylers: [{ color: "#111827" }]
+  },
+  {
+    featureType: "administrative",
+    elementType: "geometry.stroke",
+    stylers: [{ color: "#1f2937" }, { weight: 1.4 }]
+  },
+  {
+    featureType: "landscape",
+    elementType: "all",
+    stylers: [{ color: "#1f2937" }]  // Slightly lighter than background
+  },
+  {
+    featureType: "poi",
+    elementType: "geometry",
+    stylers: [{ color: "#1f2937" }]
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry.fill",
+    stylers: [{ color: "#374151" }]  // Lighter for contrast
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry.stroke",
+    stylers: [{ color: "#4b5563" }]
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "geometry.fill",
+    stylers: [{ color: "#374151" }]
+  },
+  {
+    featureType: "road.arterial",
+    elementType: "geometry.stroke",
+    stylers: [{ color: "#4b5563" }]
+  },
+  {
+    featureType: "road.local",
+    elementType: "geometry",
+    stylers: [{ color: "#374151" }]
+  },
+  {
+    featureType: "transit",
+    elementType: "all",
+    stylers: [{ color: "#1f2937" }]
+  },
+  {
+    featureType: "water",
+    elementType: "all",
+    stylers: [{ color: "#111827" }]
+  }
+]
 
 export default function GoogleMapComponent() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -29,81 +102,23 @@ export default function GoogleMapComponent() {
         center={center}
         zoom={15}
         options={{
-          styles: [
-            {
-              featureType: "all",
-              elementType: "labels.text.fill",
-              stylers: [{ color: "#6c7983" }]
-            },
-            {
-              featureType: "all",
-              elementType: "labels.text.stroke",
-              stylers: [{ visibility: "on" }, { color: "#13263c" }, { weight: 2 }, { gamma: 0.84 }]
-            },
-            {
-              featureType: "all",
-              elementType: "labels.icon",
-              stylers: [{ visibility: "off" }]
-            },
-            {
-              featureType: "administrative",
-              elementType: "geometry.fill",
-              stylers: [{ color: "#13263c" }]
-            },
-            {
-              featureType: "administrative",
-              elementType: "geometry.stroke",
-              stylers: [{ color: "#144b53" }, { lightness: 14 }, { weight: 1.4 }]
-            },
-            {
-              featureType: "landscape",
-              elementType: "all",
-              stylers: [{ color: "#08304b" }]
-            },
-            {
-              featureType: "poi",
-              elementType: "geometry",
-              stylers: [{ color: "#0c4152" }, { lightness: 5 }]
-            },
-            {
-              featureType: "road.highway",
-              elementType: "geometry.fill",
-              stylers: [{ color: "#000000" }]
-            },
-            {
-              featureType: "road.highway",
-              elementType: "geometry.stroke",
-              stylers: [{ color: "#0b434f" }, { lightness: 25 }]
-            },
-            {
-              featureType: "road.arterial",
-              elementType: "geometry.fill",
-              stylers: [{ color: "#000000" }]
-            },
-            {
-              featureType: "road.arterial",
-              elementType: "geometry.stroke",
-              stylers: [{ color: "#0b3d51" }, { lightness: 16 }]
-            },
-            {
-              featureType: "road.local",
-              elementType: "geometry",
-              stylers: [{ color: "#000000" }]
-            },
-            {
-              featureType: "transit",
-              elementType: "all",
-              stylers: [{ color: "#146474" }]
-            },
-            {
-              featureType: "water",
-              elementType: "all",
-              stylers: [{ color: "#021019" }]
-            }
-          ]
+          styles: mapStyles,
+          disableDefaultUI: true,
+          zoomControl: true,
+          scrollwheel: false,
         }}
       >
-        <Marker position={center} />
+        <Marker 
+          position={center}
+          icon={{
+            path: "M12 0C7.58 0 4 3.58 4 8c0 5.25 8 13 8 13s8-7.75 8-13c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z",
+            fillColor: "#EAB308",
+            fillOpacity: 1,
+            strokeWeight: 1,
+            strokeColor: "#000",
+            scale: 1.5,
+          }}
+        />
       </GoogleMap>
     </LoadScript>
   )

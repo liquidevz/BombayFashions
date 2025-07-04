@@ -116,7 +116,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 dark:text-white leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl mb-6 dark:text-white leading-tight"
             >
               {blog.title}
             </motion.h1>
@@ -203,7 +203,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold mb-12 text-center"
+                className="text-3xl md:text-4xl mb-12 text-center"
               >
                 Related <span className="text-gradient">Articles</span>
               </motion.h2>
@@ -228,7 +228,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
                     </div>
                     
                     <div className="p-6">
-                      <h3 className="text-lg font-bold mb-2 line-clamp-2 dark:text-white">
+                      <h3 className="text-lg mb-2 line-clamp-2 dark:text-white">
                         <Link 
                           href={`/blog/${relatedBlog.slug}`}
                           className="hover:text-gradient transition-colors duration-300"

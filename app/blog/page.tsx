@@ -180,7 +180,7 @@ function BlogContent() {
                     </div>
                     
                     {/* Title */}
-                    <h2 className="text-xl font-bold mb-3 text-gray-800 dark:text-white group-hover:text-[#192e42] dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">
+                    <h2 className="text-xl mb-3 text-gray-800 dark:text-white group-hover:text-[#192e42] dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">
                       <Link href={`/blog/${blog.slug}`}>
                         {blog.title}
                       </Link>
@@ -210,7 +210,7 @@ function BlogContent() {
               className="text-center py-16"
             >
               <div className="text-6xl mb-4">📝</div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">No articles found</h3>
+              <h3 className="text-2xl mb-4 text-gray-800 dark:text-white">No articles found</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-8">
                 {searchTerm || selectedCategory 
                   ? "Try adjusting your search or filter criteria"

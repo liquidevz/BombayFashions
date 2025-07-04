@@ -170,7 +170,7 @@ export default function AboutPage() {
             <div className="lg:col-span-4 space-y-8">
               <div>
                 <p className="text-gray-500 text-sm font-medium tracking-wide uppercase mb-3 font-seasons">Come visit us!</p>
-                <h2 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-6 font-seasons">Work Space</h2>
+                <h2 className="text-4xl sm:text-5xl text-slate-800 mb-6 font-seasons">Work Space</h2>
                 <p className="text-gray-700 text-base leading-relaxed font-poppins">
                   We are available for you to come down and personally meet us. Have a look at the variety of products
                   we develop.

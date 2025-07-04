@@ -114,7 +114,7 @@ function ContactContent() {
                 viewport={{ once: true }}
                 className="bg-gray-50 p-8 rounded-2xl h-full flex flex-col"
               >
-                <h2 className="text-2xl font-bold mb-6 text-gray-900">Get in Touch</h2>
+                <h2 className="text-2xl mb-6 text-gray-900">Get in Touch</h2>
                 <p className="text-gray-600 mb-8">
                   Have questions about our uniform manufacturing services? We're here to help you create the perfect professional attire for your needs.
                 </p>
@@ -187,7 +187,7 @@ function ContactContent() {
               className="h-full"
             >
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 h-full">
-                <h2 className="text-2xl font-bold mb-6 text-gray-900">Send us a Message</h2>
+                <h2 className="text-2xl mb-6 text-gray-900">Send us a Message</h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Inquiry Type Selection */}

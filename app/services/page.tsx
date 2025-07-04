@@ -72,7 +72,7 @@ function ServicesContent() {
         <div className="container mx-auto px-4 relative z-10">
           <div ref={titleRef} className="text-center">
             <motion.h1
-              className="text-5xl md:text-6xl font-bold mb-4 text-gray-900"
+              className="text-5xl md:text-6xl mb-4 text-gray-900"
               initial={{ opacity: 0, y: 20 }}
               animate={isTitleInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
@@ -111,7 +111,7 @@ function ServicesContent() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-3xl md:text-4xl mb-6 text-gray-900">
               <span className="text-gradient">What We Do Best</span>
             </h2>
             <p className="text-gray-600">
@@ -153,7 +153,7 @@ function ServicesContent() {
                     <div className="w-12 h-12 rounded-full bg-gradient flex items-center justify-center mb-4 text-white">
                       {service.icon}
                     </div>
-                    <h3 className="text-2xl font-bold mb-2 text-white">{service.title}</h3>
+                    <h3 className="text-2xl mb-2 text-white">{service.title}</h3>
                   </motion.div>
 
                   <motion.p className="text-gray-200 text-sm transform opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
@@ -189,7 +189,7 @@ function ServicesContent() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-3xl md:text-4xl mb-6 text-gray-900">
               Ready to <span className="text-gradient">Elevate Your Professional Image?</span>
             </h2>
             <p className="text-gray-600 mb-8">

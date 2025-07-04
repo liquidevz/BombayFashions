@@ -156,7 +156,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                     )}
                   </div>
                   
-                  <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+                  <h1 className="text-4xl text-gray-800 dark:text-white mb-4">
                     {product.title}
                   </h1>
                   
@@ -176,7 +176,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
 
                 {/* Pricing */}
                 <div className="flex items-center gap-4 py-4 border-y border-gray-200 dark:border-gray-700">
-                  <div className="text-4xl font-bold text-[#192e42] dark:text-blue-400">
+                  <div className="text-4xl text-[#192e42] dark:text-blue-400">
                     {product.price}
                   </div>
                   {product.originalPrice && (
@@ -241,7 +241,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
 
                 {/* Contact */}
                 <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                  <h3 className="font-bold text-gray-800 dark:text-white mb-3">Need Help? Contact Us</h3>
+                  <h3 className="text-gray-800 dark:text-white mb-3">Need Help? Contact Us</h3>
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
                                           <Phone size={16} className="text-[#192e42] dark:text-blue-400" />
@@ -304,7 +304,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                 {activeTab === 'specifications' && (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <h4 className="font-bold text-gray-800 dark:text-white">Product Details</h4>
+                      <h4 className="text-gray-800 dark:text-white">Product Details</h4>
                       <div className="space-y-2">
                         <div className="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
                           <span className="text-gray-600 dark:text-gray-300">Category</span>
@@ -321,7 +321,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                       </div>
                     </div>
                     <div className="space-y-4">
-                      <h4 className="font-bold text-gray-800 dark:text-white">Availability</h4>
+                      <h4 className="text-gray-800 dark:text-white">Availability</h4>
                       <div className="space-y-2">
                         <div className="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
                           <span className="text-gray-600 dark:text-gray-300">Stock Status</span>
@@ -346,7 +346,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="mt-16"
               >
-                <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">
+                <h2 className="text-3xl text-gray-800 dark:text-white mb-8 text-center">
                   Related Products
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -365,14 +365,14 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                         />
                       </div>
                       <div className="p-6">
-                                              <h3 className="font-bold text-gray-800 dark:text-white mb-2 group-hover:text-[#192e42] dark:group-hover:text-blue-400 transition-colors">
+                                              <h3 className="text-gray-800 dark:text-white mb-2 group-hover:text-[#192e42] dark:group-hover:text-blue-400 transition-colors">
                         {relatedProduct.title}
                       </h3>
                         <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
                           {relatedProduct.excerpt}
                         </p>
                         <div className="flex items-center justify-between">
-                                                  <span className="text-xl font-bold text-[#192e42] dark:text-blue-400">
+                                                  <span className="text-xl text-[#192e42] dark:text-blue-400">
                           {relatedProduct.price}
                         </span>
                         <span className="text-sm text-[#192e42] dark:text-blue-400 group-hover:underline">
