@@ -5,7 +5,6 @@ import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Calendar, User, Search, Filter, Clock, Tag } from "lucide-react"
-import Footer from "@/components/footer"
 import blogData from "@/lib/blog-data.json"
 
 export default function BlogPage() {
@@ -239,8 +238,6 @@ export default function BlogPage() {
           )}
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 } 

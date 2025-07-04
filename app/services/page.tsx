@@ -198,7 +198,7 @@ export default function Services() {
         </div>
       </section>
 
-      <BookNowButton />
+      {/* <BookNowButton /> */}
     </main>
   )
 }
