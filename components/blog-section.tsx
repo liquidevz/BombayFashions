@@ -149,7 +149,7 @@ export default function BlogSection({ blogs }: BlogSectionProps) {
           ))}
         </div>
 
-        <div className="text-center mt-4">
+        <div className="text-center mt-12">
           <Link
             href="/blog"
             className="bg-gradient text-white py-3 px-8 rounded-full hover:shadow-lg transition-shadow duration-300 inline-block"

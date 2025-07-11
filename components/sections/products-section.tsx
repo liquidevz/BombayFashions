@@ -9,6 +9,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
@@ -183,9 +184,9 @@ const ProductsSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center gap-4 mt-4 px-4">
-              <CarouselPrevious className="static translate-y-0 h-10 w-10 sm:h-12 sm:w-12" />
-              <CarouselNext className="static translate-y-0 h-10 w-10 sm:h-12 sm:w-12" />
+            <div className="flex justify-center gap-2 mt-4">
+              <CarouselPrevious className="static translate-y-0 mx-1" />
+              <CarouselNext className="static translate-y-0 mx-1" />
             </div>
           </Carousel>
         </div>
@@ -203,13 +204,13 @@ const ProductsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-center mt-4 md:mt-12"
+          className="text-center"
         >
           <Link
             href="/products"
-            className="inline-flex items-center justify-center bg-white/90 text-[#192e42] px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm border border-gray-100"
+            className="inline-flex items-center justify-center bg-white/90 text-[#192e42] px-8 py-4 rounded-full text-lg hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm border border-gray-100"
           >
-            View All Products <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+            View All Products <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </motion.div>
       </div>
