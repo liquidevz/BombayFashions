@@ -1,11 +1,12 @@
-import fs from "fs/promises";
-import path from "path";
 import Link from "next/link";
 import DeleteButton from "@/components/ui/delete-button";
+import dbConnect from "@/lib/db";
+import Blog from "@/lib/models/Blog";
 
 async function getBlogs() {
-  const blogData = await fs.readFile(path.join(process.cwd(), "lib/blog-data.json"), "utf-8");
-  return JSON.parse(blogData).blogs;
+  await dbConnect();
+  const blogs = await Blog.find({}).sort({ createdAt: -1 });
+  return blogs;
 }
 
 export default async function AdminBlogs() {
@@ -43,7 +44,7 @@ export default async function AdminBlogs() {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {blogs.map((blog: any) => (
-              <tr key={blog.id}>
+              <tr key={blog._id.toString()}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   {blog.title}
                 </td>
@@ -55,13 +56,13 @@ export default async function AdminBlogs() {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <Link
-                    href={`/admin/blogs/${blog.id}/edit`}
+                    href={`/admin/blogs/${blog._id}/edit`}
                     className="text-indigo-600 hover:text-indigo-900 mr-4"
                   >
                     Edit
                   </Link>
                   <DeleteButton 
-                    action={`/api/admin/blogs/${blog.id}/delete`}
+                    action={`/api/admin/blogs/${blog._id}/delete`}
                     itemName="this blog"
                   />
                 </td>

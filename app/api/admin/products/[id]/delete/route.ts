@@ -1,21 +1,19 @@
-import fs from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
+import dbConnect from "@/lib/db";
+import Product from "@/lib/models/Product";
 
 export async function POST(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const productData = await fs.readFile(path.join(process.cwd(), "lib/product-data.json"), "utf-8");
-    const data = JSON.parse(productData);
+    await dbConnect();
     
-    data.products = data.products.filter((p: any) => p.id.toString() !== params.id);
+    const deletedProduct = await Product.findByIdAndDelete(params.id);
     
-    await fs.writeFile(
-      path.join(process.cwd(), "lib/product-data.json"),
-      JSON.stringify(data, null, 2)
-    );
+    if (!deletedProduct) {
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
+    }
     
     return NextResponse.redirect(new URL("/admin/products", request.url));
   } catch (error) {

@@ -1,11 +1,12 @@
-import fs from "fs/promises";
-import path from "path";
 import Link from "next/link";
 import DeleteButton from "@/components/ui/delete-button";
+import dbConnect from "@/lib/db";
+import Product from "@/lib/models/Product";
 
 async function getProducts() {
-  const productData = await fs.readFile(path.join(process.cwd(), "lib/product-data.json"), "utf-8");
-  return JSON.parse(productData).products;
+  await dbConnect();
+  const products = await Product.find({}).sort({ createdAt: -1 });
+  return products;
 }
 
 export default async function AdminProducts() {
@@ -46,9 +47,9 @@ export default async function AdminProducts() {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {products.map((product: any) => (
-              <tr key={product.id}>
+              <tr key={product._id.toString()}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {product.title || product.name}
+                  {product.title}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {product.category}
@@ -63,13 +64,13 @@ export default async function AdminProducts() {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <Link
-                    href={`/admin/products/${product.id}/edit`}
+                    href={`/admin/products/${product._id}/edit`}
                     className="text-indigo-600 hover:text-indigo-900 mr-4"
                   >
                     Edit
                   </Link>
                   <DeleteButton 
-                    action={`/api/admin/products/${product.id}/delete`}
+                    action={`/api/admin/products/${product._id}/delete`}
                     itemName="this product"
                   />
                 </td>

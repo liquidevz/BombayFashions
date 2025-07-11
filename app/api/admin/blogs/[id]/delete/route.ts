@@ -1,21 +1,19 @@
-import fs from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
+import dbConnect from "@/lib/db";
+import Blog from "@/lib/models/Blog";
 
 export async function POST(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
-    const blogData = await fs.readFile(path.join(process.cwd(), "lib/blog-data.json"), "utf-8");
-    const data = JSON.parse(blogData);
+    await dbConnect();
     
-    data.blogs = data.blogs.filter((b: any) => b.id.toString() !== params.id);
+    const deletedBlog = await Blog.findByIdAndDelete(params.id);
     
-    await fs.writeFile(
-      path.join(process.cwd(), "lib/blog-data.json"),
-      JSON.stringify(data, null, 2)
-    );
+    if (!deletedBlog) {
+      return NextResponse.json({ error: "Blog not found" }, { status: 404 });
+    }
     
     return NextResponse.redirect(new URL("/admin/blogs", request.url));
   } catch (error) {

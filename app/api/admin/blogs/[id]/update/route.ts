@@ -1,39 +1,32 @@
-import fs from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
+import dbConnect from "@/lib/db";
+import Blog from "@/lib/models/Blog";
 
 export async function POST(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
+    await dbConnect();
     const formData = await request.formData();
-    const blogData = await fs.readFile(path.join(process.cwd(), "lib/blog-data.json"), "utf-8");
-    const data = JSON.parse(blogData);
     
-    const blogIndex = data.blogs.findIndex((b: any) => b.id.toString() === params.id);
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      params.id,
+      {
+        title: formData.get("title"),
+        slug: formData.get("slug"),
+        excerpt: formData.get("excerpt"),
+        content: formData.get("content"),
+        date: formData.get("date"),
+        author: formData.get("author"),
+        imageUrl: formData.get("imageUrl"),
+      },
+      { new: true }
+    );
     
-    if (blogIndex === -1) {
+    if (!updatedBlog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
-    
-    const updatedBlog = {
-      ...data.blogs[blogIndex],
-      title: formData.get("title"),
-      slug: formData.get("slug"),
-      excerpt: formData.get("excerpt"),
-      content: formData.get("content"),
-      date: formData.get("date"),
-      author: formData.get("author"),
-      imageUrl: formData.get("imageUrl"),
-    };
-    
-    data.blogs[blogIndex] = updatedBlog;
-    
-    await fs.writeFile(
-      path.join(process.cwd(), "lib/blog-data.json"),
-      JSON.stringify(data, null, 2)
-    );
     
     return NextResponse.redirect(new URL("/admin/blogs", request.url));
   } catch (error) {

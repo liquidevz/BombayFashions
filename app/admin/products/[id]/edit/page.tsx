@@ -1,12 +1,15 @@
-import fs from "fs/promises";
-import path from "path";
 import { notFound } from "next/navigation";
 import ProductForm from "@/components/forms/product-form";
+import dbConnect from "@/lib/db";
+import Product from "@/lib/models/Product";
+import Category from "@/lib/models/Category";
 
 async function getData(id: string) {
-  const productData = await fs.readFile(path.join(process.cwd(), "lib/product-data.json"), "utf-8");
-  const data = JSON.parse(productData);
-  const product = data.products.find((p: any) => p.id.toString() === id);
+  await dbConnect();
+  const [product, categories] = await Promise.all([
+    Product.findById(id),
+    Category.find({})
+  ]);
   
   if (!product) {
     notFound();
@@ -14,7 +17,7 @@ async function getData(id: string) {
   
   return {
     product,
-    categories: data.categories,
+    categories,
   };
 }
 
@@ -26,9 +29,9 @@ export default async function EditProduct({ params }: { params: { id: string } }
       <h1 className="text-2xl font-bold mb-6">Edit Product</h1>
       <div className="bg-white shadow-sm rounded-lg p-6">
         <ProductForm
-          product={product}
+          product={JSON.parse(JSON.stringify(product))}
           action={`/api/admin/products/${params.id}/update`}
-          categories={categories}
+          categories={JSON.parse(JSON.stringify(categories))}
         />
       </div>
     </div>

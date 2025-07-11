@@ -1,10 +1,11 @@
-import fs from "fs/promises";
-import path from "path";
 import ProductForm from "@/components/forms/product-form";
+import dbConnect from "@/lib/db";
+import Category from "@/lib/models/Category";
 
 async function getCategories() {
-  const productData = await fs.readFile(path.join(process.cwd(), "lib/product-data.json"), "utf-8");
-  return JSON.parse(productData).categories;
+  await dbConnect();
+  const categories = await Category.find({});
+  return categories;
 }
 
 export default async function NewProduct() {
@@ -16,7 +17,7 @@ export default async function NewProduct() {
       <div className="bg-white shadow-sm rounded-lg p-6">
         <ProductForm
           action="/api/admin/products/create"
-          categories={categories}
+          categories={JSON.parse(JSON.stringify(categories))}
         />
       </div>
     </div>
